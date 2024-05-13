@@ -1,7 +1,3 @@
-[youtube]
-weight = 5
-format = "https://youtube.com/@%v"
-icon = "fab fa-youtube"
 
 [github]
 weight = 1
@@ -42,6 +38,11 @@ icon = "fab fa-medium"
 weight = 8
 format = "https://gitlab.com/%v"
 icon = "fab fa-gitlab"
+
+[youtube]
+weight = 9
+format = "https://youtube.com/@%v"
+icon = "fab fa-youtube"
 
 [youtubelegacy]
 weight = 9
@@ -117,6 +118,16 @@ icon = "fab fa-odnoklassniki"
 weight = 23
 format = "https://vk.com/%v"
 icon = "fab fa-vk"
+
+[inaturalist]
+weight = 22
+format = "https://inaturalist.org/observations?user_id=%v"
+icon ="ai ai-inaturalist"
+
+[bluesky]
+weight = 23
+format = "https://www.bsky.app/profile/%v"
+icon = "fab fa-bluesky"
 
 [flickr]
 weight = 24
