@@ -52,7 +52,7 @@ a {
   }
 }
 
-a img {
+a img .zoomimg{
   &:hover,
   &:focus {
     cursor: zoom-in;
@@ -129,6 +129,12 @@ pre,
   // sometimes you should use vendor-feature.
   -webkit-overflow-scrolling: touch;
 }
+
+.graycode {
+	background-color: $gray-very-light;
+	font-family: monospace;
+}
+
 pre code {
   display: block;
   width: auto;
@@ -316,7 +322,6 @@ samp {
       font-style: italic;
       padding: .5rem;
       margin: 0 auto;
-      font-size: 13px;
       color: $brand-gray;
     }
 
@@ -747,7 +752,7 @@ samp {
 
 // Hux add home-page post-content-preview
 .post-content-preview {
-  font-size: 13px;
+  font-size: 15px;
   font-style: italic;
   color: $brand-gray !important;
 
