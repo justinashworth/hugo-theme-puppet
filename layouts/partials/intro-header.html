@@ -48,11 +48,11 @@
         <div class="site-heading">
         {{ end }}
           <h1>{{ with .Title }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}</h1>
-          {{ $description := .Description }}
+          {{ $homesubtitle := .Description }}
           {{ if .IsHome }}
-          {{ $description = .Site.Params.description }}
+          {{ $homesubtitle = .Site.Params.homesubtitle }}
           {{ end }}
-          <span class="subheading">{{ $description }}</span>
+          <span class="subheading">{{ $homesubtitle }}</span>
         </div>
       </div>
     </div>

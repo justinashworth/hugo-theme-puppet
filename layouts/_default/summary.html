@@ -5,10 +5,7 @@
       <h3 class="post-subtitle">{{ . }}</h3>
       {{ end }}
       <div class="post-content-preview">
-        {{ if isset .Params "description" }} {{ index .Params "description" }}
-        {{ else }}
         {{ .Summary | plainify | truncate 180 }}
-        {{ end }} 
       </div>
   </a>
   <p class="post-meta">
