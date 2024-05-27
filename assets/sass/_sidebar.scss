@@ -28,7 +28,8 @@
     }
   }
   a {
-    color: $gray-light !important;
+/*    color: $gray-light !important; */
+    color: $gray-light;
     &:hover,
     &:active {
       color: $brand-primary !important;
