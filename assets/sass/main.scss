@@ -44,7 +44,7 @@ h4 {
   font-size: 21px;
 }
 a {
-  color: $gray-dark;
+  color: #fff;
   &:hover,
   &:focus {
     color: $brand-primary;
@@ -56,6 +56,13 @@ a img .zoomimg{
   &:focus {
     cursor: zoom-in;
   }
+}
+
+.post-title, .post-subtitle, .post-preview{
+	color: $gray-dark;
+	&:hover {
+		color: $brand-primary;
+	}
 }
 
 article {
@@ -941,6 +948,7 @@ img::-moz-selection {
     margin: 0 1px;
     margin-bottom: 6px;
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
     > sup {
       margin-left: -2px;
       font-weight: 700;
