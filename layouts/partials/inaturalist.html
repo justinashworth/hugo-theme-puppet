@@ -2,7 +2,7 @@
 <hr>
 <div class='inatheader'><a target="_blank" href="https://www.inaturalist.org/">iNaturalist.org</a> Observations:</div>
 
-<div class='inatheader'>Popular:</div>
+<div class='inatheader'><a href="https://www.inaturalist.org/observations?order_by=votes&user_id={{ . }}">Popular:</a></div>
 <div id="inat_top"></div>
 
 <script type="module">
@@ -14,7 +14,7 @@
 
 {{ with site.Params.social.inaturalist }}
 
-<div class='inatheader'>Recent:</div>
+<div class='inatheader'><a href="https://www.inaturalist.org/observations?user_id={{ . }}">Recent:</a></div>
 <div id="inat"></div>
 
 <script type="module">

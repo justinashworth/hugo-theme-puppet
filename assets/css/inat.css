@@ -1,13 +1,13 @@
 .inatheader, .inatfooter {
-	font-style: italic;
 	font-size: 14px;
 	width: 300px;
 }
 
 .inatfooter {
 	font-size: 12px;
+	font-style: italic;
 }
-.inatfooter a {
+.inatheader a, .inatfooter a {
 	text-decoration: underline;
 }
 
