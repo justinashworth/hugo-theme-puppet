@@ -1,6 +1,7 @@
 .inatheader, .inatfooter {
 	font-style: italic;
-	font-size: 13px;
+	font-size: 14px;
+	width: 300px;
 }
 
 .inatfooter {
