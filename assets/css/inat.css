@@ -1,0 +1,51 @@
+.inatheader, .inatfooter {
+	font-style: italic;
+	font-size: 13px;
+}
+
+.inatfooter {
+	font-size: 12px;
+}
+.inatfooter a {
+	text-decoration: underline;
+}
+
+div#inat {
+	display: table;
+	font-family: sans-serif;
+	font-size: 10px;
+	line-height: 1;
+}
+
+div.inatrow {
+	display: table-row;
+}
+
+div.inatobs {
+	display: table-cell;
+}
+
+.inatobs, .csstooltip, .csstooltiptext {
+	border-radius: 2px;
+}
+
+.csstooltip {
+  position: relative;
+	text-decoration: none;
+}
+
+.csstooltip .csstooltiptext {
+	display: none;
+	position: absolute;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.7);
+	color: #fff;
+  text-align: center;
+	top: 50px;
+}
+
+.csstooltip:hover .csstooltiptext {
+  visibility: visible;
+	display: block;
+}
+

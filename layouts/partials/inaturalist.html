@@ -1,14 +1,16 @@
-<hr>
+{{ with site.Params.social.inaturalist }}
 
+<hr>
 <div class='inatheader'>Latest <a target="_blank" href="https://www.inaturalist.org/">iNaturalist.org</a> Observations:</div>
 <div id="inat"></div>
 
 <div id="inatwidget" ></div>
 
-{{ with site.Params.social.inaturalist }}
 <script type="module">
 	import {inatwidget} from "/js/inatwidget.js";
 	inatwidget( {{ . }} );
 </script>
-{{ end }}
 
+<span class='inatfooter'>See more and join in on&nbsp;<a target="_blank" href="https://inaturalist.org/">iNaturalist.org</a></span>
+
+{{ end }}
