@@ -1,4 +1,7 @@
 <section>
+	{{ if templates.Exists ("partials/inaturalist.html") }}
+		{{ partial "inaturalist.html" }}
+	{{ end }}
 	{{ if templates.Exists ("partials/slacks.html") }}
 		{{ partial "slacks.html" }}
 	{{ end }}
