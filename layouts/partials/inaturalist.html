@@ -1,28 +1,32 @@
-{{ with site.Params.social.inaturalist_top }}
-<hr>
-<div class='inatheader'><a target="_blank" href="https://www.inaturalist.org/">iNaturalist.org</a> Observations:</div>
+{{ with resources.Get "js/inatwidget.js" }}
+  {{ with . | js.Build (dict "minify" true) }}
+    <script src="{{ .RelPermalink }}"></script>
 
-<div class='inatheader'><a href="https://www.inaturalist.org/observations?order_by=votes&user_id={{ . }}">Popular:</a></div>
-<div id="inat_top"></div>
+		{{ with site.Params.social.inaturalist_top }}
+			<hr>
+			<div class='inatheader'><a target="_blank" href="https://www.inaturalist.org/">iNaturalist.org</a> Observations:</div>
 
-<script type="module">
-	import {inatwidget} from "/js/inatwidget.js";
-	inatwidget( {{ . }}, "inat_top", true );
-</script>
+			<div class='inatheader'><a href="https://www.inaturalist.org/observations?order_by=votes&user_id={{ . }}">Popular:</a></div>
+			<div id="inat_top"></div>
 
+			<script type="module">
+				inatwidget( {{ . }}, "inat_top", true );
+			</script>
+
+		{{ end }}
+
+		{{ with site.Params.social.inaturalist }}
+
+		<div class='inatheader'><a href="https://www.inaturalist.org/observations?user_id={{ . }}">Recent:</a></div>
+		<div id="inat"></div>
+
+		<script type="module">
+			inatwidget( {{ . }}, "inat", false );
+		</script>
+
+		<span class='inatfooter'>See more and join in on&nbsp;<a target="_blank" href="https://inaturalist.org/">iNaturalist.org</a></span>
+
+		{{ end }}
+
+  {{ end }}
 {{ end }}
-
-{{ with site.Params.social.inaturalist }}
-
-<div class='inatheader'><a href="https://www.inaturalist.org/observations?user_id={{ . }}">Recent:</a></div>
-<div id="inat"></div>
-
-<script type="module">
-	import {inatwidget} from "/js/inatwidget.js";
-	inatwidget( {{ . }}, "inat", false );
-</script>
-
-<span class='inatfooter'>See more and join in on&nbsp;<a target="_blank" href="https://inaturalist.org/">iNaturalist.org</a></span>
-
-{{ end }}
-
