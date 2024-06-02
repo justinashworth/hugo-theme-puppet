@@ -1,18 +1,20 @@
 <section class="visible-md visible-lg">
   <hr>
   {{ with .Site.GetPage "/about" }}
-  <h5><a href={{"about/" | relURL }}>ABOUT ME</a></h5>
+		<h5><a href={{"about/" | relURL }}>ABOUT ME</a></h5>
   {{ else }}
-  <h5>ABOUT ME</h5>
+		<h5>ABOUT ME</h5>
   {{ end }}
 
   {{ $sidebar := .Site.Params.sidebar }}
   <div class="short-about">
 		{{ with .Site.Params.fullname }}
-		<p class="fullname">{{ . }}</p>
+			<p class="fullname">{{ . }}</p>
 		{{ end }}
 		{{ if .Site.Params.showemail }}
-		<p><i class="fa-solid fa-envelope"></i> <span class="email"><script language="JavaScript" src="{{ .Site.Params.emailcloaked }}"></script><noscript>{{ .Site.Params.emailhuman }}</noscript></span></p>
+			{{ $emailjspath := .Site.Params.emailjs }}
+			{{ $emailjs :=  resources.Get $emailjspath | js.Build (dict "minify" true) }}
+			<p><i class="fa-solid fa-envelope"></i> <span class="email"><script language="JavaScript" src="{{ $emailjs }}"></script><noscript>{{ .Site.Params.noscript }}</noscript></span></p>
 		{{ end }}
     {{ if $sidebar.gravatarEmail }}
     <img src="https://s.gravatar.com/avatar/{{ md5 $sidebar.gravatarEmail }}?s=200" />
