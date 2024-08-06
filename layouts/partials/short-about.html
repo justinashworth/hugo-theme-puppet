@@ -14,7 +14,7 @@
 		{{ if .Site.Params.showemail }}
 			{{ $emailjspath := .Site.Params.emailjs }}
 			{{ $emailjs :=  resources.Get $emailjspath | js.Build (dict "minify" true) }}
-			<p><i class="fa-solid fa-envelope"></i> <span class="email"><script language="JavaScript" src="{{ $emailjs }}"></script><noscript>{{ .Site.Params.noscript }}</noscript></span></p>
+			<p><i class="fa-solid fa-envelope"></i> <span class="email"><script language="JavaScript" src="{{ $emailjs }}"></script><noscript>{{ .Site.Params.emailnoscript }}</noscript></span></p>
 		{{ end }}
     {{ if $sidebar.gravatarEmail }}
     <img src="https://s.gravatar.com/avatar/{{ md5 $sidebar.gravatarEmail }}?s=200" />

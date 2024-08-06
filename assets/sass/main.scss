@@ -318,8 +318,9 @@ samp {
   }
 
   figure {
-    margin: .5rem;
+    margin: .0rem;
     text-align: center;
+    position: relative;
 
     .image-caption:not(:empty) {
       min-width: 20%;
@@ -329,6 +330,21 @@ samp {
       padding: .5rem;
       margin: 0 auto;
       color: $brand-gray;
+    }
+
+    .gallery-caption:not(:empty) {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-style: italic;
+      color: #fff;
+      margin-bottom: 5px;
+      margin-right: 5px;
+      background: #9996;
+      border-radius: 7px;
+      padding: 0.7rem;
+      line-height: 0.5;
     }
 
     img {
@@ -1187,4 +1203,27 @@ img::-moz-selection {
 
 .note {
 	font-style: italic;
+}
+
+.photo-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -40px;
+
+    @media(max-width:899px) {
+        margin: 0;
+    }
+
+    img {
+        border-radius: 8px;
+    }
+
+    .photo-item {
+        padding: 2px;
+        width: 50%;
+
+        @media(max-width:683px) {
+            width: 100%;
+        }
+    }
 }

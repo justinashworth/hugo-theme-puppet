@@ -1,0 +1,46 @@
+<div id='photoswipe' class='pswp-gallery photo-container'>
+{{- $context := . -}}
+{{- range $src := .Page.Resources.Match "gallery/**.jpg" -}}
+  {{- $title := (replace .Title "gallery/" "") -}}
+  {{- $title := (replace $title ".jpg" "") -}}
+
+  {{- $crop := default "smart" -}}
+  {{- $tinyw := printf "500x375 %s Lanczos q85" $crop -}}
+  {{- $smallw := printf "800x600 %s Lanczos q80" $crop -}}
+  {{- $mediumw := printf "1200x900 %s Lanczos q40" $crop -}}
+  {{- $largew := printf "1600x1200 %s Lanczos q30" $crop -}}
+
+  {{- $srcset := slice -}}
+
+  {{- $tiny := (.Fill $tinyw) -}}
+  {{- $srcset = $srcset | append (printf "%s 500w" $tiny.Permalink) -}}
+  {{- $img := dict "src" $tiny.RelPermalink "w" $tiny.Width "h" .Height -}}
+
+  {{- if and (ge .Width "800") (ne .MediaType.SubType "png") -}}
+      {{- $small := (.Fill $smallw) -}}
+      {{- $srcset = $srcset | append (printf "%s 800w" $small.Permalink) -}}
+      {{- $img = dict "src" $small.RelPermalink "w" $small.Width "h" $small.Height -}}
+  {{- end -}}
+
+  {{- $sizes := "(min-width: 900px) 420px, (min-width: 684px) 310px, calc(100vw - 40px)" -}}
+
+  {{- $srcsetstr := delimit $srcset ", " -}}
+
+  <div class='photo-item'>
+  <figure>
+<!-- for <a> tags hugo puts %20 in place of spaces for all values. So $srcsetstr errors for data-pswp-srcset here, preventing responsive image features -->
+  <a href="{{.}}" data-pswp-width="{{.Width}}" data-pswp-height="{{.Height}}" target="_blank">
+    <picture>
+      <source type="{{ .MediaType }}" sizes="{{ $sizes }}" srcset='{{$srcsetstr}}'>
+      <img src="{{$img.src}}" alt="{{$title}}" title="{{$title}}">
+    </picture>
+  </a>
+  {{ with $title }}
+  <figcaption class="gallery-caption">
+      {{- . | safeHTML -}}
+  </figcaption>
+  {{ end }}
+  </figure>
+  </div>
+{{ end }}
+</div>
