@@ -90,7 +90,10 @@
   {{- if $header_img -}}
   {{ .Scratch.Set "header_img" ( $header_img | relURL ) }}
   {{- end -}}
-
+  {{- if .IsPage -}}
+  {{- $post_bg := .Site.Params.post_bg -}}
+  {{- .Scratch.Set "post_bg" ($post_bg | relURL) }}
+  {{- end -}}
   {{- if and .IsPage (.Params.toc) }}
   {{ .Scratch.Set "toc" true }}
   {{ end -}}

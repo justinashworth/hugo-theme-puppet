@@ -1,13 +1,13 @@
 <div class="post-preview">
   <a href="{{ .RelPermalink }}">
       <h2 class="post-title">{{ .Title }}</h2>
+  </a>
       {{ with .Params.subtitle }}
       <h3 class="post-subtitle">{{ . }}</h3>
       {{ end }}
       <div class="post-content-preview">
         {{ .Summary | truncate 180 }}
       </div>
-  </a>
   <p class="post-meta">
       Posted by {{ with $.Params.author }} {{ $.Params.author }} {{ else }} {{ .Site.Params.author }} {{ end }} on {{ .Date.Format "Mon, Jan 2, 2006" }}
   </p>

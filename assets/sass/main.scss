@@ -58,11 +58,14 @@ a img .zoomimg{
   }
 }
 
-.post-title, .post-subtitle, .post-preview{
-	color: $gray-dark;
+.post-title {
+	color: $post-title-color;
 	&:hover {
-		color: $brand-primary;
+		color: $post-title-hover-color;
 	}
+}
+.post-subtitle, .post-preview{
+	color: $post-title-color;
 }
 
 article {
@@ -438,6 +441,7 @@ samp {
   }
 }
 
+// ???
 .navbar-custom {
   // materialize
   background: none;
@@ -455,7 +459,7 @@ samp {
     height: 56px;
     line-height: 25px;
     &:hover {
-      color: rgba(255, 255, 255, 0.8);
+      color: $navbar-hover-color;
     }
   }
   .nav {
@@ -485,7 +489,7 @@ samp {
       line-height: 20px;
       &:hover,
       &:focus {
-        color: $white-faded;
+        color: $navbar-hover-color;
       }
     }
     .nav {
@@ -495,7 +499,7 @@ samp {
           padding: 20px;
           &:hover,
           &:focus {
-            color: $white-faded;
+            color: $navbar-hover-color;
           }
           &:active {
             background: none;
@@ -597,17 +601,6 @@ samp {
         margin-bottom: 15px;
       }
     }
-    .tags {
-      a,
-      .tag {
-        border-color: $gray-dark;
-        color: $gray-dark;
-        &:hover,
-        &:active {
-          background-color: rgba(0, 0, 0, 0.05);
-        }
-      }
-    }
   }
   background: no-repeat center center;
   background-color: $brand-gray;
@@ -618,20 +611,20 @@ samp {
   @media only screen and (min-width: 768px) {
     margin-bottom: 20px; /* response on desktop */
   }
-  .site-heading,
   .post-heading,
   .page-heading {
     padding: 85px 0 55px;
     color: white;
     @media only screen and (min-width: 768px) {
-      padding: 150px 0;
+      padding: 80px 0;
     }
   }
   // masterialize
   .site-heading {
     padding: 95px 0 70px;
+    color: white;
     @media only screen and (min-width: 768px) {
-      padding: 150px 0;
+      padding: 120px 0;
     }
   }
   .site-heading,
@@ -640,6 +633,7 @@ samp {
     h1 {
       margin-top: 0;
       font-size: 50px;
+      color: $heading-color;
     }
     .subheading {
       @include sans-serif;
@@ -648,6 +642,7 @@ samp {
       display: block;
       font-weight: 300;
       margin: 10px 0 0;
+      color: $subheading-color;
     }
     @media only screen and (min-width: 768px) {
       h1 {
@@ -659,9 +654,15 @@ samp {
     h1 {
       font-size: 30px;
       margin-bottom: 24px;
+      color: $post-heading-color;
     }
-    .subheading,
+    .subheading {
+      color: $subheading-color;
+      line-height: 1.1;
+      display: block;
+    }
     .meta {
+      color: $subheading-color;
       line-height: 1.1;
       display: block;
     }
@@ -730,30 +731,21 @@ samp {
       margin-top: 30px;
       margin-bottom: 8px;
     }
-    > .post-subtitle {
+  }
+  .post-subtitle {
       font-size: 15px;
       line-height: 1.3;
       margin: 0;
       font-weight: 300;
       margin-bottom: 10px;
     }
-  }
-  > .post-meta {
+  .post-meta {
     @include sans-serif;
     color: $brand-gray;
     font-size: 10px;
     margin-top: 10px;
 		text-align: right;
-    > a {
-      text-decoration: none;
-      color: $gray-dark;
-      &:hover,
-      &:focus {
-        color: $brand-primary;
-        text-decoration: underline;
-      }
     }
-  }
   @media only screen and (min-width: 768px) {
     > a {
       > .post-title {
@@ -954,26 +946,26 @@ img::-moz-selection {
   a,
   .tag {
     display: inline-block;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid $header-tag-border;
     border-radius: 999em;
     padding: 0 10px 0 10px;
-/*    color: rgba(255, 255, 255, 1); */
+    color: $header-tag-text;
     line-height: 24px;
     font-size: 12px;
     text-decoration: none;
     margin: 0 1px;
     margin-bottom: 6px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: $header-tag-bg;
     > sup {
       margin-left: -2px;
       font-weight: 700;
     }
     &:hover,
     &:active {
-      color: white;
-      border-color: white;
-      background-color: rgba(255, 255, 255, 0.4);
+      color: $header-tag-hover;
+      border: 1px solid $header-tag-border-hover;
+      background-color: $header-tag-bg-hover;
       text-decoration: none;
     }
     @media only screen and (min-width: 768px) {
@@ -1208,22 +1200,9 @@ img::-moz-selection {
 .photo-container {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -40px;
-
-    @media(max-width:899px) {
-        margin: 0;
-    }
 
     img {
         border-radius: 8px;
-    }
-
-    .photo-item {
         padding: 2px;
-        width: 50%;
-
-        @media(max-width:683px) {
-            width: 100%;
-        }
     }
 }

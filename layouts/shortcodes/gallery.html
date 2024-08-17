@@ -1,0 +1,67 @@
+<div id='gallery' class='photo-container'>
+
+{{- $width := "300" -}}
+{{- with .Get 1}}
+  {{- $width := . -}}
+{{- end -}}
+
+{{- $gallery := dict -}}
+{{- $path := .Get 0}}
+{{- with .Page.Resources.Get $path -}}
+  {{- with . | transform.Unmarshal -}}
+    {{- $gallery = . -}}
+  {{- end -}}
+{{- else -}}
+  {{- errorf "Unable to get page resource %q" $path -}}
+{{- end -}}
+
+{{/* image resizing template arguments for .Fill function */}}
+{{- $crop := default "smart" -}}
+{{- $tinyw := printf "500x375 %s Lanczos q85" $crop -}}
+{{- $smallw := printf "800x600 %s Lanczos q80" $crop -}}
+{{- $mediumw := printf "1200x900 %s Lanczos q40" $crop -}}
+{{- $largew := printf "1600x1200 %s Lanczos q30" $crop -}}
+
+{{- $page := .Page -}}
+
+{{- range $gallery.gallery -}}
+  {{- $srcset := slice -}}
+
+  {{- $imgresource := $page.Resources.Get .path -}}
+  {{- $tiny := ($imgresource.Fill $tinyw) -}}
+  {{- $srcset = $srcset | append (printf "%s 500w" $tiny.Permalink) -}}
+  {{- $img := dict "src" $tiny.RelPermalink "w" $tiny.Width "h" .Height -}}
+
+  {{- if and (ge $imgresource.Width "800") (ne $imgresource.MediaType.SubType "png") -}}
+      {{- $small := ($imgresource.Fill $smallw) -}}
+      {{- $srcset = $srcset | append (printf "%s 800w" $small.Permalink) -}}
+      {{- $img = dict "src" $small.RelPermalink "w" $small.Width "h" $small.Height -}}
+  {{- end -}}
+
+  {{- if and (ge $imgresource.Width "1200") (ne $imgresource.MediaType.SubType "png") -}}
+      {{- $medium := ($imgresource.Fill $mediumw) -}}
+      {{- $srcset = $srcset | append (printf "%s 1200w" $medium.Permalink) -}}
+  {{- end -}}
+
+  {{- if and (ge $imgresource.Width "1600") (ne $imgresource.MediaType.SubType "png") -}}
+      {{- $large := ($imgresource.Fill $largew) -}}
+      {{- $srcset = $srcset | append (printf "%s 1600w" $large.Permalink) -}}
+  {{- end -}}
+
+  {{- $sizes := "(min-width: 900px) 420px, (min-width: 684px) 310px, calc(100vw - 40px)" -}}
+
+  {{- $srcsetstr := delimit $srcset ", " -}}
+
+  <figure>
+    <a class="zoomimg">
+      <picture>
+        <source type="{{$imgresource.MediaType}}" sizes="{{$sizes}}" srcset='{{$srcsetstr}}'>
+        <img data-src="{{$img.src}}" data-action="zoom" alt="{{.caption}}" title="{{.caption}}" class="lazyload">
+      </picture>
+    </a>
+    <figcaption class="gallery-caption">
+        {{- .caption -}}
+    </figcaption>
+  </figure>
+{{- end -}}
+</div>

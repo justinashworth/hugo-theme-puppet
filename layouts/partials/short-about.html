@@ -11,10 +11,24 @@
 		{{ with .Site.Params.fullname }}
 			<p class="fullname">{{ . }}</p>
 		{{ end }}
-		{{ if .Site.Params.showemail }}
-			{{ $emailjspath := .Site.Params.emailjs }}
-			{{ $emailjs :=  resources.Get $emailjspath | js.Build (dict "minify" true) }}
-			<p><i class="fa-solid fa-envelope"></i> <span class="email"><script language="JavaScript" src="{{ $emailjs }}"></script><noscript>{{ .Site.Params.emailnoscript }}</noscript></span></p>
+		{{ if .Site.Params.showaddr }}
+      <!--
+			{{ $addrjspath := .Site.Params.addrjs }}
+			{{ $addrjs :=  resources.Get $addrjspath | js.Build (dict "minify" true) }}
+			<p><i class="fa-solid fa-envelope"></i> <span class="addr"><script language="JavaScript" src="{{ $addrjs }}"></script><noscript>{{ .Site.Params.addrnoscript }}</noscript></span></p>
+      -->
+      {{ $plainaddr := .Site.Params.addrnoscript }}
+      {{ with resources.Get .Site.Params.addrjs }}
+        {{ with . | js.Build (dict "minify" true) }}
+          <script src="{{ .RelPermalink }}"></script>
+          <p><i class="fa-solid fa-envelope"></i>
+            <span id="addr" class="addr">
+              <noscript>{{ $plainaddr }}</noscript>
+            </span>
+            <script type="module">makeAddr();</script>
+          </p>
+        {{ end }}
+      {{ end }}
 		{{ end }}
     {{ if $sidebar.gravatarEmail }}
     <img src="https://s.gravatar.com/avatar/{{ md5 $sidebar.gravatarEmail }}?s=200" />

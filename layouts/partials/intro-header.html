@@ -1,18 +1,12 @@
 {{ $header_img := .Scratch.Get "header_img" }}
+{{ $post_bg := .Scratch.Get "post_bg" }}
 
 {{ if .IsPage }}
-<style type="text/css">
-  header.intro-header {
-    position: relative;
-    background-image: url('{{ with $header_img }}{{- . -}}{{ end }}');
-  }
-</style>
-{{ if $header_img }}
-<header class="intro-header ">
+{{ with $post_bg }}
+<header class="intro-header" style="background-image: url('{{- . -}}')">
 {{ else }}
 <header class="intro-header style-text">
 {{ end }}
-  <div class="header-mask"></div>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10">
@@ -23,11 +17,6 @@
             {{ end }}
           </div>
           <h1>{{ .Title }}</h1>
-          <h2 class="subheading">{{ $.Params.subtitle }}</h2>
-          <span class="meta">
-            Posted by {{ with $.Params.author }} {{ $.Params.author }} {{ else }} {{ .Site.Params.author }} {{ end }}
-            on {{ .Date.Format "Mon, Jan 2, 2006" }}
-          </span>
         </div>
       </div>
     </div>
