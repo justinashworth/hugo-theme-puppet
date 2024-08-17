@@ -1,25 +1,25 @@
 // Variables
 
 // master colorlist continues here for easy customization
-$brand-primary: #0085a1;
 $brand-gray: #a3a3a3;
 $gray-dark: #404040;
+$brand-primary: $gray-dark;
 $gray-very-light: #ddd;
 $gray-light: #888;
 $darkshadow: #000;
-$lightshadow: #fff;
+$lightshadow: #ddd;
 $white-faded: rgba(255, 255, 255, 0.8);
 
-$heading-color: $brand-primary;
+$heading-color: #fff;
 $subheading-color: $brand-gray;
-$post-heading-color: $brand-primary;
+$post-heading-color: $gray-very-light;
 $post-title-color: $brand-primary;
 $post-title-hover-color: $brand-gray;
 
-$header-tag-text: $brand-primary;
-$header-tag-border: $brand-primary;
-$header-tag-hover: $gray-light;
-$header-tag-border-hover: $gray-light;
+$header-tag-text: $gray-very-light;
+$header-tag-border: $gray-light;
+$header-tag-hover: #fff;
+$header-tag-border-hover: $gray-very-light;
 $header-tag-bg: rgba(255, 255, 255, 0.1);
 $header-tag-bg-hover: rgba(255, 255, 255, 0.2);
 
@@ -28,7 +28,6 @@ $sidebar-tag-border: $brand-primary;
 $sidebar-tag-hover: $gray-light;
 $sidebar-tag-border-hover: $gray-light;
 $sidebar-tag-bg: rgba(0, 0, 0, 0.05);
-$sidebar-tag-bg-hover: rgba(255, 200, 100, 0.1);
+$sidebar-tag-bg-hover: rgba(230, 230, 230, 0.5);
 
-$navbar-hover-color: $gray-light;
-
+$navbar-hover-color: $gray-very-light;
