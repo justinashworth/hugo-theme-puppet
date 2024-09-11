@@ -8,7 +8,7 @@
 
   {{- else if and $social (ne $value true)  -}}
     {{ $social = merge $social (dict "id" $value) }}
-    
+
   {{- else if $value -}}
   {{- else -}}
   {{ $social = dict }}
@@ -27,20 +27,25 @@
 {{- end -}}
 
 {{- range sort $socialList "weight" -}}
-{{ $destination := "" }}
-{{ if .url }}
-{{ $destination = .url | relURL }}
-{{ else if .format }}
-{{ $destination = printf (string .format) .id }}
-{{- end -}}
-<li>
-  <a href="{{ $destination | safeURL }}" {{- if (urls.Parse $destination).Host | or .newtab }} target="_blank" {{- end -}}>
-    <span class="fa-stack fa-lg">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="{{ .icon }} fa-stack-1x fa-inverse">{{- .text -}}</i>
-    </span>
-  </a>
-</li>
+  {{ $destination := "" }}
+  {{ if .url }}
+  {{ $destination = .url | relURL }}
+  {{ else if .format }}
+  {{ $destination = printf (string .format) .id }}
+  {{- end -}}
+  <li>
+    {{- $title := .title -}}
+    {{- if eq $title "mastodon" -}}
+      <a rel="me" href="{{ $destination | safeURL }}" {{- if (urls.Parse $destination).Host | or .newtab }} target="_blank" {{- end -}}>
+    {{- else -}}
+      <a href="{{ $destination | safeURL }}" {{- if (urls.Parse $destination).Host | or .newtab }} target="_blank" {{- end -}}>
+    {{- end -}}
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="{{ .icon }} fa-stack-1x fa-inverse">{{- .text -}}</i>
+      </span>
+    </a>
+  </li>
 {{- end -}}
 
 </ul>
