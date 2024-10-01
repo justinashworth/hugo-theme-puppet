@@ -12,11 +12,6 @@
 			<p class="fullname">{{ . }}</p>
 		{{ end }}
 		{{ if .Site.Params.showaddr }}
-      <!--
-			{{ $addrjspath := .Site.Params.addrjs }}
-			{{ $addrjs :=  resources.Get $addrjspath | js.Build (dict "minify" true) }}
-			<p><i class="fa-solid fa-envelope"></i> <span class="addr"><script language="JavaScript" src="{{ $addrjs }}"></script><noscript>{{ .Site.Params.addrnoscript }}</noscript></span></p>
-      -->
       {{ $plainaddr := .Site.Params.addrnoscript }}
       {{ with resources.Get .Site.Params.addrjs }}
         {{ with . | js.Build (dict "minify" true) }}

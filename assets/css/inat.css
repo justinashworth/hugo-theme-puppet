@@ -1,52 +1,52 @@
 .inatheader, .inatfooter {
-	font-size: 14px;
-	width: 300px;
+  font-size: 14px;
+  width: 300px;
 }
 
 .inatfooter {
-	font-size: 12px;
-	font-style: italic;
+  font-size: 12px;
+  font-style: italic;
 }
 .inatheader a, .inatfooter a {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 div#inat, div#inat_top {
-	display: table;
-	font-family: sans-serif;
-	font-size: 10px;
-	line-height: 1;
+  display: table;
+  font-family: sans-serif;
+  font-size: 10px;
+  line-height: 1;
 }
 
 div.inatrow {
-	display: table-row;
+  display: table-row;
 }
 
 div.inatobs {
-	display: table-cell;
+  display: table-cell;
 }
 
 .inatobs, .csstooltip, .csstooltiptext {
-	border-radius: 2px;
+  border-radius: 2px;
 }
 
 .csstooltip {
   position: relative;
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .csstooltip .csstooltiptext {
-	display: none;
-	position: absolute;
+  display: none;
+  position: absolute;
   z-index: 1;
   background-color: rgba(0,0,0,0.7);
-	color: #fff;
+  color: #fff;
   text-align: center;
-	top: 50px;
+  top: 50px;
 }
 
 .csstooltip:hover .csstooltiptext {
   visibility: visible;
-	display: block;
+  display: block;
 }
 
