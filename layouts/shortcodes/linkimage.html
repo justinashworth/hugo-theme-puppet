@@ -1,7 +1,10 @@
+{{- $src := .Get 0 -}}
+{{- $url := .Get 1 -}}
+{{- $width := .Get 2 -}}
 <figure>
-<a href='{{ .Get 1 }}' target='_blank'><div style='display: inline-block;'><img src='{{ .Get 0 }}' width="{{.Get 2}}"></div></a>
-{{ with .Get 3 }}
-<figcaption class="image-caption">{{.}}</figcaption>
-{{ end }}
+<a href='{{$url}}' target='_blank'><div style=''><img src='{{$src}}' width="{{$width}}"></div></a>
+{{- with .Get 3 -}}
+  <figcaption class="image-caption">{{.}}</figcaption>
+{{- end -}}
 </figure>
 <br>

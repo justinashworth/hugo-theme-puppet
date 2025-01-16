@@ -1,4 +1,11 @@
 {{- $video_src := .Get "src" -}}
-<video controls width="98%" style="display: block; margin: 0 auto; padding:1px;border:1px solid black;">
-  <source src="{{ $video_src }}" type="video/mp4">
-</video>
+{{- $poster := "/img/videoposter.png" -}}
+{{- with .Get "poster" -}}
+  {{- $poster = . -}}
+{{- end -}}
+<div class="videocontainer">
+  <video controls controlsList="nodownload" poster="{{$poster}}">
+    <source src="{{ $video_src }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
