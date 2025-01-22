@@ -1,0 +1,26 @@
+{{- $src := .Get 0 -}}
+{{- $url := .Get 1 -}}
+{{- $width := .Get 2 -}}
+{{- $heading := .Get 3 -}}
+{{- $title := .Get 4 -}}
+{{- $attrib := .Get 5 -}}
+{{- $attriblink := .Get 6 -}}
+{{- $equip := .Get 7 -}}
+{{- $settings := .Get 8 -}}
+
+<div class="awardphoto">
+
+  <figure>
+    <a href='{{$url}}' target='_blank'>
+      <img src='{{$src}}' width="{{$width}}">
+    </a>
+  </figure>
+
+  <div class="photocaption">
+    <div class="heading">{{$heading}}</div>
+    <div class="title">"{{$title}}"</div>
+    <div class="attrib"><a href="{{$attriblink}}">{{$attrib}}</a></div>
+    <div class="equip">{{$equip}}</div>
+    <div class="settings">{{$settings}}</div>
+  </div>
+</div>

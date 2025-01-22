@@ -1,0 +1,14 @@
+{{- $heading := .Get 0 -}}
+{{- $title := .Get 1 -}}
+{{- $attrib := .Get 2 -}}
+{{- $attriblink := .Get 3 -}}
+{{- $equip := .Get 4 -}}
+{{- $settings := .Get 5 -}}
+
+<div class="photocaption">
+  <div class="heading">{{$heading}}</div>
+  <div class="title">"{{$title}}"</div>
+  <div class="attrib"><a href="{{$attriblink}}">{{$attrib}}</a></div>
+  <div class="equip">{{$equip}}</div>
+  <div class="settings">{{$settings}}</div>
+</div>

@@ -1213,3 +1213,31 @@ img::-moz-selection {
   object-fit: cover;
 //style="display: block; margin: 0 auto; padding:1px;border:1px solid black;"
 }
+
+.awardphoto {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 30px;
+  background-color: #222;
+  div {
+    color: #fed;
+  }
+  img {
+    border-radius: 50px;
+    padding: 20px;
+  }
+}
+
+.photocaption {
+  text-align: center;
+
+  div {
+  }
+
+  .title {
+    font-style: italic;
+  }
+
+}
