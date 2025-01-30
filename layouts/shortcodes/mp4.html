@@ -1,4 +1,4 @@
-{{- $video_src := .Get 0 -}}
+{{- $video_src := .Get "src" -}}
 {{- $poster := "/img/videoposter.png" -}}
 {{- with .Get "poster" -}}
   {{- $poster = . -}}
