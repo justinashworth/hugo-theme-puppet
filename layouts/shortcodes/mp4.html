@@ -1,10 +1,17 @@
-{{- $video_src := .Get "src" -}}
+{{- $video_src := .Get 0 -}}
 {{- $poster := "/img/videoposter.png" -}}
 {{- with .Get "poster" -}}
   {{- $poster = . -}}
 {{- end -}}
 <div class="videocontainer">
-  <video controls controlsList="nodownload" poster="{{$poster}}">
+<!--
+  {{- if (fileExists $poster) -}}
+    <video controls preload="none" controlsList="nodownload" poster="{{$poster}}">
+  {{ else }}
+    <video controls preload="none" controlsList="nodownload">
+  {{ end }}
+  -->
+    <video controls preload="none" controlsList="nodownload" poster="{{$poster}}">
     <source src="{{ $video_src }}" type="video/mp4">
     Your browser does not support the video tag.
   </video>
