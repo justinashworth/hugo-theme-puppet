@@ -1241,3 +1241,11 @@ img::-moz-selection {
   }
 
 }
+
+.logout {
+  text-align: center;
+  a {
+    text-decoration: underline;
+    color: $post-title-color;
+  }
+}
