@@ -34,7 +34,10 @@
         <hr style="visibility: hidden;" />
 
         <!-- comments -->
-        {{ partial "comments.html" . }}
+        {{ if .Params.hidecomment }}
+        {{- else -}}
+          {{ partial "comments.html" . }}
+        {{- end -}}
 
       </div>
 
