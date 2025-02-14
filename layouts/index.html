@@ -1,6 +1,6 @@
 {{ define "container" }}
 {{ $paginator := .Paginate .Site.RegularPages }}
-{{ range $paginator.Pages }}
+{{ range where $paginator.Pages "Params.hidden" "ne" "true" }}
    {{ .Render "summary" }}
 {{ end }}
 
