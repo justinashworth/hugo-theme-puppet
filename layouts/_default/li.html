@@ -1,7 +1,17 @@
+{{- $permalink := .RelPermalink -}}
 <div class="post-preview item" data-tags="{{ with .Params.tags }} {{- delimit  (apply (apply . "lower" ".") "urlquery" ".") "," -}} {{ end }}">
-  <a href="{{ .RelPermalink }}">
+  <div class="thumbnail">
+  {{- with .Params.featured_image -}}
+    <a href="{{ $permalink }}">
+      <img src="{{ $permalink }}{{ . }}">
+    </a>
+  {{- end -}}
+  </div>
+  <div class="post-preview-text">
+    <a href="{{ $permalink }}">
       <h2 class="post-title">{{ .Title }}</h2>
-  </a>
-  <h3 class="post-subtitle">{{ .Params.subtitle }}</h3>
+    </a>
+    <h3 class="post-subtitle">{{ .Params.subtitle }}</h3>
+  </div>
 <hr>
 </div>

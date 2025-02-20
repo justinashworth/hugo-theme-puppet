@@ -1,17 +1,26 @@
+{{- $permalink := .RelPermalink -}}
 <div class="post-preview">
-  <a href="{{ .RelPermalink }}">
-      <h2 class="post-title">{{ .Title }}</h2>
-  </a>
-      {{ with .Params.subtitle }}
-      <h3 class="post-subtitle">{{ . }}</h3>
-      {{ end }}
-      {{ if .Params.preview }}
-        <div class="post-content-preview">
-          {{ .Summary | truncate 180 }}
-        </div>
-      {{ end }}
-  <p class="post-meta">
-      Posted by {{ with $.Params.author }} {{ $.Params.author }} {{ else }} {{ .Site.Params.author }} {{ end }} on {{ .Date.Format "Mon, Jan 2, 2006" }}
-  </p>
+  <div class="thumbnail">
+  {{- with .Params.featured_image -}}
+    <a href="{{ $permalink }}">
+      <img src="{{ $permalink }}{{ . }}">
+    </a>
+  {{- end -}}
+  </div>
+  <div class="post-preview-text">
+    <a href="{{ $permalink }}">
+        <h2 class="post-title">{{ .Title }}</h2>
+    </a>
+        {{ with .Params.subtitle }}
+        <h3 class="post-subtitle">{{ . }}</h3>
+        {{ end }}
+        {{ if .Params.preview }}
+          <div class="post-content-preview">
+            {{ .Summary | truncate 180 }}
+          </div>
+        {{ end }}
+    <p class="post-meta">
+        Posted by {{ with $.Params.author }} {{ $.Params.author }} {{ else }} {{ .Site.Params.author }} {{ end }} on {{ .Date.Format "Mon, Jan 2, 2006" }}
+    </p>
+  </div>
 </div>
-<hr>
