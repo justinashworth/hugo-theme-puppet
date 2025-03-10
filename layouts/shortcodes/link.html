@@ -3,4 +3,4 @@
 {{- with .Get 1 -}}
   {{- $text = . -}}
 {{- end -}}
-<a class="link" target="_self" href="{{ $url }}">{{ $text }}</a>
+<span><a class="link" target="_self" href="{{ $url }}">{{$text}}</a></span>
