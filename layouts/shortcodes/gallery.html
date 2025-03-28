@@ -56,7 +56,7 @@
     <a class="zoomimg">
       <picture>
         <source type="{{$imgresource.MediaType}}" sizes="{{$sizes}}" srcset='{{$srcsetstr}}'>
-        <img data-src="{{$img.src}}" data-action="zoom" alt="{{.caption}}" title="{{.caption}}" class="lazyload">
+        <img data-src="{{$img.src}}" data-action="zoom" alt="{{.caption}}" title="{{.caption}}" loading="lazy">
       </picture>
     </a>
     <figcaption class="gallery-caption">

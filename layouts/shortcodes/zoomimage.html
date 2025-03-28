@@ -1,12 +1,9 @@
 {{- $src := .Get 0 -}}
-{{- $width := .Get 1 -}}
-{{- $title := "" -}}
-{{- if .Get 2 -}}
-  {{- $title = .Get 2 -}}
-{{- end -}}
+{{- $title := .Get 1 -}}
+{{- $width := .Get 2 | default "" -}}
 <figure>
-  <a class="paragraph-image zoomimg">
-    <img data-src="{{$src}}" data-action="zoom" title="{{$title}}" alt="{{$title}}" width="{{$width}}" class="lazyload">
+  <a class="paragraph-image zoomimage">
+    <img src="{{$src}}" title="{{$title}}" alt="{{$title}}" {{- if $width }} width="{{$width}}"{{- end }} loading="lazy">
   </a>
   {{- with $title -}}
   <figcaption class="image-caption">

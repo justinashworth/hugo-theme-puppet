@@ -4,24 +4,22 @@
 <!-- Main Content -->
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      {{ partial "tagcloud.html" . }}
-      
-      <!-- Article List -->
-      <div class="mini-post-list js-result">
+    {{ partial "tagcloud.html" . }}
 
-        {{ range $pages.GroupByDate "2006" }}
+    <!-- Article List -->
+    <div class="mini-post-list js-result">
 
-        <section>
-          <span class="fa listing-seperator">
-            <span class="tag-text">{{ .Key }}</span></span>
-            {{ range .Pages }}
-            {{ .Render "li" }}
-            {{ end }}
-        </section>
-        {{ end }}
+      {{ range $pages.GroupByDate "2006" }}
 
-      </div>
+      <section>
+        <span class="fa listing-seperator">
+          <span class="tag-text">{{ .Key }}</span></span>
+          {{ range .Pages }}
+          {{ .Render "li" }}
+          {{ end }}
+      </section>
+      {{ end }}
+
     </div>
   </div>
 </div>

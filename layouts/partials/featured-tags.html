@@ -1,8 +1,5 @@
 <section>
   {{ $bottom := .Scratch.Get "bottom" }}
-  {{ if $bottom }}
-  <hr class="hidden-sm hidden-xs">
-  {{ end }}
   <div class="tags">
     {{ range .Site.Taxonomies.tags }}
     <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>

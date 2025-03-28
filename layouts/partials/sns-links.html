@@ -20,11 +20,7 @@
   {{ end }}
 {{- end -}}
 
-{{- if .center -}}
-<ul class="list-inline text-center">
-{{- else -}}
-<ul class="list-inline">
-{{- end -}}
+<div class="socials">
 
 {{- range sort $socialList "weight" -}}
   {{ $destination := "" }}
@@ -33,7 +29,7 @@
   {{ else if .format }}
   {{ $destination = printf (string .format) .id }}
   {{- end -}}
-  <li>
+  <div class="social">
     {{- $title := .title -}}
     {{- if eq $title "mastodon" -}}
       <a rel="me" href="{{ $destination | safeURL }}" {{- if (urls.Parse $destination).Host | or .newtab }} target="_blank" {{- end -}}>
@@ -45,7 +41,7 @@
         <i class="{{ .icon }} fa-stack-1x fa-inverse">{{- .text -}}</i>
       </span>
     </a>
-  </li>
+  </div>
 {{- end -}}
 
-</ul>
+</div>

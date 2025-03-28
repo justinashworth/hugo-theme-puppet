@@ -1,3 +1,14 @@
+.inat-widget {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  font-family: sans-serif;
+  padding: 0px;
+  line-height: 1;
+  font-size: 1.1rem
+}
+
 .inatheader, .inatfooter {
   font-size: 14px;
   width: 300px;
@@ -50,15 +61,7 @@ div.inatobs {
   display: block;
 }
 
-/*
-.inat-widget td {vertical-align: top; padding-bottom: 10px;}
-.inat-meta { font-size: smaller; margin-top: 3px; line-height: 1.2;}
-.inat-label, .inat-value, .inat-user { font-family: "Trebuchet MS", Arial, sans-serif; }
-.inat-observation-body, .inat-user-body { padding-left: 10px; }
-.inat-widget .inat-footer td.inat-value {vertical-align: middle; padding-left: 10px;}
-*/
 .inat-widget-header {margin-bottom: 0px; font-size: 1.2rem; }
-.inat-widget { font-family: sans-serif; padding: 0px; margin: 0px; line-height: 1; font-size: 1.1rem}
 .inat-widget td, .inat-widget tr, .inat-widget table {vertical-align: top; padding: 0px; line-height: 1; margin: 0px;}
 .inat-label { color: #888; }
 .inat-observation-body, .inat-user-body { padding: 0px; }
@@ -66,6 +69,6 @@ div.inatobs {
 .inat-observation-image, .inat-user-image { width: 75px; display: inline-block; }
 .inat-observation-image img, .inat-user-image img { max-width: 75px; }
 .inat-observation-image img { vertical-align: middle; }
-.inat-widget-small .inat-observation-image { display:block; float: left; margin: 0 3px 3px 0; height:48px;}
+.inat-widget-small .inat-observation-image { display:block; margin: 0 3px 3px 0; height:48px;}
 .inat-user-body {vertical-align: middle;}
 .inat-widget td.inat-user-body {vertical-align: middle;}

@@ -2,19 +2,15 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <!-- SNS Link -->
-        {{ partial "sns-links.html" (dict "center" true "social" .Site.Params.social ) }}
-        <p class="copyright text-muted">
-        {{- if site.Copyright }}
-          {{ site.Copyright | markdownify }}
-        {{- else }}
-          Copyright &copy; {{ .Site.Title }} {{ now.Format "2006" }}
-        {{- end }}
-          <br>
-          Powered by <a href="https://gohugo.io">Hugo</a>
-        </p>
-      </div>
+      <p class="copyright text-muted">
+      {{- if site.Copyright }}
+        {{ site.Copyright | markdownify }}
+      {{- else }}
+        Copyright &copy; {{ .Site.Title }} {{ now.Format "2006" }}
+      {{- end }}
+        <br>
+        Powered by <a href="https://gohugo.io">Hugo</a>
+      </p>
     </div>
     <!-- for pages with a login function...
     <div class="logout">
@@ -23,27 +19,6 @@
     -->
   </div>
 </footer>
-
-<script src={{ "js/jquery.min.js" | relURL }}></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
-
-<!-- Custom Theme JavaScript -->
-{{ $mainJs := resources.Get "js/hux-blog.js" | minify | fingerprint }}
-<script src="{{ $mainJs.RelPermalink }}"></script>
-
-<!-- Simple Jekyll Search -->
-<script src={{ "js/simple-jekyll-search.min.js" | relURL }}></script>
-
-{{ $searchJs := resources.Get "js/search.js" | resources.ExecuteAsTemplate "js/search.js" . | minify | fingerprint }}
-<script src="{{ $searchJs.RelPermalink }}"></script>
-
-
-{{ if eq .Type "archive" }}
-{{ $archiveJS := resources.Get "js/archive.js" | minify | fingerprint }}
-<script src='{{ $archiveJS.RelPermalink }}'></script>
-{{ end }}
 
 {{ $toc := .Scratch.Get "toc" }}
 {{ if $toc }}
@@ -76,8 +51,6 @@
   }))
 </script>
 
-{{ $navJs := resources.Get "js/jquery.nav.js" | minify | fingerprint }}
-<script type="text/javascript" src='{{ $navJs.RelPermalink }}'></script>
 <script>
    $(document).ready( function () {
     $('.catalog-body').onePageNav({
@@ -97,6 +70,3 @@
 </script>
 
 {{ end }}
-
-{{ $zoom_js := resources.Get "zoomjs/zoom.js" | resources.Minify }}
-<script src="{{ $zoom_js.RelPermalink }}"></script>

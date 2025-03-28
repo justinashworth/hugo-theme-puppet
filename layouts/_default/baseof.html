@@ -22,7 +22,6 @@
 	{{ template "_internal/google_analytics.html" . }}
   {{ template "_internal/twitter_cards.html" . }}
   {{ template "_internal/opengraph.html" . }}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
   <link rel="canonical" href="{{ .Permalink }}" itemprop="url"/>
 
@@ -31,21 +30,16 @@
 
   {{ $options := (dict "outputStyle" "compressed" "enableSourceMap" (not hugo.IsProduction) "includePaths" (slice
   "sass")) }}
-  {{- $style := resources.Get "sass/main.scss" | resources.ToCSS $options -}}
+  {{- $style := resources.Get "sass/main.scss" | css.Sass $options -}}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-
-  {{ $zoom_css := resources.Get "zoomjs/zoom.css" | resources.Minify -}}
-  <link rel="stylesheet" href="{{ $zoom_css.RelPermalink }}">
 
   {{ range .Site.Params.custom_css -}}
   {{ $custom_template := resources.Get . }}
   {{ if $custom_template }}
-  {{ $custom_style := $custom_template | resources.ToCSS | resources.Minify }}
+  {{ $custom_style := $custom_template | css.Sass | resources.Minify }}
   <link rel="stylesheet" href="{{ $custom_style.RelPermalink }}">
   {{ end }}
   {{- end -}}
-
-  <script src={{ "js/lazysizes.min.js" | relURL }}></script>
 
   <!-- custom js -->
   {{- range .Site.Params.custom_js -}}
@@ -77,11 +71,7 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons/css/academicons.min.css">
 
-  <!-- for affiliate linking to https://members.cj.com/ -->
-<!--  <script src="https://www.anrdoezrs.net/am/101184852/include/allCj/am.js"></script> -->
 </head>
-
-<!-- hack iOS CSS :active style -->
 
 <body ontouchstart="">
   {{- $header_img := .Param "header_img" -}}
@@ -101,58 +91,39 @@
   {{ .Scratch.Set "toc" true }}
   {{ end -}}
 
-  <!-- Nav -->
-  {{ partial "nav.html" . }}
-  {{ partial "search.html" . }}
-
   <!-- Page Header -->
   {{ partial "intro-header.html" . }}
 
   {{ block "main" . }}
 
   <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      {{ if eq .Site.Params.sidebar.enable false }}
+  <div class="main-container">
+    {{ if eq .Site.Params.sidebar.enable false }}
 
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1
-      postlist-container">
-        {{ block "container" . }}{{ end }}
-      </div>
-      <!-- Sidebar Container -->
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1
-      sidebar-container">
-        <!-- Featured Tags -->
-        {{ partial "featured-tags.html" . }}
-        {{ partial "widget.html" }}
-        {{ partial "iNatObsOfDay.html" }}
-        <!-- Friends Blog -->
-        {{ partial "friends.html" . }}
-      </div>
+    <div class="postlist-container">
+      {{ block "container" . }}{{ end }}
+    </div>
 
-      {{ else }}
-      <!-- USE SIDEBAR -->
-      <!-- PostList Container -->
-      <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12
-      col-xs-12 postlist-container">
-        {{ block "container" . }}{{ end }}
-      </div>
-      <!-- Sidebar Container -->
-      <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12
-      col-xs-12 sidebar-container">
+    {{ else }}
+    <!-- USE SIDEBAR -->
+    <!-- PostList Container -->
+    <div class="postlist-container">
+      {{ block "container" . }}{{ end }}
+    </div>
+    <!-- Sidebar Container -->
+    <div class="sidebar-container">
 
-        <!-- Featured Tags -->
-        {{ partial "featured-tags.html" . }}
-        {{ partial "widget.html" }}
-        {{ partial "iNatObsOfDay.html" }}
-        {{ partial "short-about.html" . }}
-        <!-- Friends Blog -->
-        {{ partial "friends.html" . }}
-
-      </div>
-      {{ end }}
+      <!-- Featured Tags -->
+      {{ partial "featured-tags.html" . }}
+      {{ partial "widget.html" }}
+      {{ partial "iNatObsOfDay.html" }}
+      {{ partial "short-about.html" . }}
+      <!-- Friends Blog -->
+      {{ partial "friends.html" . }}
 
     </div>
+    {{ end }}
+
   </div>
 
   {{ end }}

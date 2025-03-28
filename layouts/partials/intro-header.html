@@ -2,14 +2,13 @@
 {{ $post_bg := .Scratch.Get "post_bg" }}
 
 {{ if .IsPage }}
-{{ with $post_bg }}
-<header class="intro-header" style="background-image: url('{{- . -}}')">
-{{ else }}
-<header class="intro-header style-text">
-{{ end }}
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10">
+  {{ with $post_bg }}
+    <header class="intro-header" style="background-image: url('{{- . -}}')">
+  {{ else }}
+    <header class="intro-header style-text">
+  {{ end }}
+    <div class="container">
+      <div class="row">
         <div class="post-heading">
           <div class="tags">
             {{ range (.GetTerms "tags") }}
@@ -20,17 +19,19 @@
         </div>
       </div>
     </div>
-  </div>
-</header>
+    <div class='header-post-date'>{{ .Date.Format "Mon, 1 Jan 2006" }}</div>
+    <div class='header-home-link'>
+      <a href="{{ .Site.BaseURL | safeURL }}">{{ .Site.Title }}</a>
+    </div>
+  </header>
 {{ else }}
-{{ with $header_img }}
-<header class="intro-header" style="background-image: url('{{- . -}}')">
-{{ else}}
-<header class="intro-header style-text">
-{{ end }}
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10">
+  {{ with $header_img }}
+    <header class="intro-header" style="background-image: url('{{- . -}}')">
+  {{ else}}
+    <header class="intro-header style-text">
+  {{ end }}
+    <div class="container">
+      <div class="row">
         {{ if eq (.Param "short") true }}
         <div class="site-heading" id="tag-heading">
         {{ else }}
@@ -45,6 +46,5 @@
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 {{ end }}

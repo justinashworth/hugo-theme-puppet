@@ -2,31 +2,33 @@
   {{ with . | js.Build (dict "minify" true) }}
     <script src="{{ .RelPermalink }}"></script>
 
-		{{ with site.Params.social.inaturalist_top }}
-			<hr>
-			<div class='inatheader'><a target="_blank" href="https://www.inaturalist.org/">iNaturalist.org</a> Observations:</div>
+		<div class="inat-widget">
 
-			<div class='inatheader'><a href="https://www.inaturalist.org/observations?order_by=votes&user_id={{ . }}">Popular:</a></div>
-			<div id="inat_top"></div>
+  		{{ with site.Params.social.inaturalist_top }}
+  			<div class='inatheader'><a target="_blank" href="https://www.inaturalist.org/">iNaturalist.org</a> Observations:</div>
 
-			<script type="module">
-				inatwidget( {{ . }}, "inat_top", true );
-			</script>
+  			<div class='inatheader'><a href="https://www.inaturalist.org/observations?order_by=votes&user_id={{ . }}">Popular:</a></div>
+  			<div id="inat_top"></div>
 
-		{{ end }}
+  			<script type="module">
+  				inatwidget( {{ . }}, "inat_top", true );
+  			</script>
 
-		{{ with site.Params.social.inaturalist }}
+  		{{ end }}
 
-		<div class='inatheader'><a href="https://www.inaturalist.org/observations?user_id={{ . }}">Recent:</a></div>
-		<div id="inat"></div>
+  		{{ with site.Params.social.inaturalist }}
 
-		<script type="module">
-			inatwidget( {{ . }}, "inat", false );
-		</script>
+  		<div class='inatheader'><a href="https://www.inaturalist.org/observations?user_id={{ . }}">Recent:</a></div>
+  		<div id="inat"></div>
 
-		<span class='inatfooter'>See more and join in on&nbsp;<a target="_blank" href="https://inaturalist.org/">iNaturalist.org</a></span>
+  		<script type="module">
+  			inatwidget( {{ . }}, "inat", false );
+  		</script>
 
-		{{ end }}
+  		<span class='inatfooter'>See more and join in on&nbsp;<a target="_blank" href="https://inaturalist.org/">iNaturalist.org</a></span>
 
+  		{{ end }}
+
+		</div>
   {{ end }}
 {{ end }}

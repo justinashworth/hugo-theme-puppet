@@ -1,49 +1,211 @@
 @import "_variables.scss";
-@import "_mixins.scss";
 @import "_sidebar.scss";
 @import "_side-catalog.scss";
+@import "_inat.scss";
 @import "_search.scss";
 @import "_highlight.scss";
 
-// Global Components
-
-body {
-  background-image: $main-bg-image;
-  @include sans-serif;
-  font-size: 16px;
-  // Hux mpdify to 16px (Mobile First), and increase to 20px while 768+ width
-  color: $gray-dark;
-  overflow-x: hidden;
-
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+// Small screens / mobile
+@media (max-width: 950px) {
+  .main-container {
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .post-container {
+    padding: 10px;
+  }
+  .caption {
+    font-size: 12px;
+    line-height: 1;
+  }
 }
 
-// -- Typography
+.post-content-preview {
+  font-size: 14px;
+}
 
-p {
-  margin: 30px 0;
-  @media screen and (max-width: 768px) {
-    & {
-      margin: 25px 0;
+.main-container {
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.postlist-container {
+  flex: 2;
+  margin-right: 20px;
+}
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  padding: 0;
+  background: $main-bg-image;
+  color: $gray-dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue","Arial","PingFang SC","Hiragino Sans GB","STHeiti","Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;
+}
+
+a {
+  color: $brand-primary;
+  text-decoration: none;
+  &:hover {
+    color: $gold;
+  }
+}
+
+.intro-header {
+  height: 250px;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+
+  position: relative;
+  &.style-text {
+    background: none;
+    .site-heading,
+    .post-heading,
+    .page-heading {
+      padding: 20px 0 5px;
+      color: $gray-dark;
+      .subheading {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  .post-heading,
+  .page-heading {
+    padding: 20px 0 5px;
+    color: white;
+  }
+  .site-heading {
+    padding: 95px 0 70px;
+    color: white;
+  }
+  .site-heading,
+  .page-heading {
+    text-align: left;
+    h1 {
+      padding-left: 10px;
+      margin-top: 0;
+      font-size: 3rem;
+      color: $heading-color;
+      text-shadow: 2px 4px 10px rgba(0,0,0,0.4), 3px 5px 12px rgba(0,0,0,0.4);
+    }
+    .subheading {
+      font-size: 18px;
+      line-height: 1.1;
+      display: block;
+      font-weight: 300;
+      margin: 10px 0 0;
+      color: $subheading-color;
+    }
+  }
+  .post-heading {
+    h1 {
+      font-size: 30px;
+      margin-bottom: 24px;
+      color: $post-heading-color;
+      text-shadow: 2px 4px 10px rgba(0,0,0,0.4), 3px 5px 12px rgba(0,0,0,0.4);
+    }
+    .subheading {
+      color: $subheading-color;
+      line-height: 1.1;
+      display: block;
+    }
+    .meta {
+      color: $subheading-color;
+      line-height: 1.1;
+      display: block;
+    }
+    .subheading {
+      font-size: 17px;
+      line-height: 1.2;
+      font-weight: normal;
+      margin: 10px 0 30px;
+      margin-top: -5px;
+    }
+    .meta {
+      font-style: italic;
+      font-weight: 300;
+      font-size: 16px;
+      a {
+        color: white;
+      }
+    }
+  }
+  .header-img-credit {
+    position: absolute;
+    bottom: 6px;
+    right: 9px;
+    color: white;
+    opacity: 0.3;
+    font-size: 10px;
+    z-index: 1;
+    a {
+      color: white;
+    }
+  }
+  .header-post-date {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    font-size: 12px;
+    color: white;
+    margin-left: 5px;
+  }
+
+  .header-home-link {
+    position: absolute;
+    bottom: 0px;
+    right: 3px;
+    a {
+      text-shadow: 2px 4px 10px rgba(0,0,0,0.4), 3px 5px 12px rgba(0,0,0,0.4);
+      font-weight: 800;
+      font-size: 20px;
+      color: white;
+      &:hover {
+        color: $navbar-hover-color;
+      }
     }
   }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @include sans-serif;
-  line-height: 1.1;
-  font-weight: bold;
+figure {
+  text-align: center;
+  margin: .0rem;
+  position: relative;
+
+  .image-caption:not(:empty) {
+    min-width: 20%;
+    max-width: 80%;
+    font-style: italic;
+    padding: .5rem;
+    margin: 0 auto;
+    color: $gray-dark;
+  }
+
+  img {
+    /*width: 100%;*/
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+  }
 }
-h4 {
-  font-size: 21px;
+
+.caption {
+  position: static;
+  font-style: italic;
+  padding: 5px;
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+  max-width: none;
 }
+
 a {
   color: $brand-gray;
   &:hover,
@@ -57,6 +219,11 @@ a img .zoomimg{
   &:focus {
     cursor: zoom-in;
   }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 .post-title {
@@ -73,6 +240,7 @@ a img .zoomimg{
 article {
   overflow: hidden;
 }
+
 blockquote {
   color: gray;
   font-style: italic;
@@ -81,64 +249,6 @@ blockquote {
   p {
     margin: 0;
   }
-}
-
-// Utils Style Class can be used in Markdown.
-small.img-hint {
-  display: block;
-  margin-top: -20px;
-  text-align: center;
-}
-br + small.img-hint {
-  margin-top: -40px;
-}
-img.shadow {
-  box-shadow: rgba(0, 0, 0, 0.258824) 0px 2px 5px 0px;
-}
-// Utils Style End
-
-// Select
-select {
-  -webkit-appearance: none;
-  margin-top: 15px;
-  color: #337ab7;
-  border-color: #337ab7;
-  padding: 0em 0.4em;
-  background: white;
-  &.sel-lang {
-    min-height: 28px;
-    font-size: 14px;
-  }
-}
-
-// override table style in bootstrap
-table {
-  margin-top: 10px;
-}
-table.table > tbody,
-table.table > thead {
-  th,
-  td {
-    border: 1px solid #eee !important;
-  }
-}
-@media screen and (max-width: 767px) {
-  .table-responsive {
-    border: 0;
-  }
-}
-
-hr.small {
-  max-width: 100px;
-  margin: 15px auto;
-  border-width: 4px;
-  border-color: white;
-}
-// add by Hux
-pre,
-.table-responsive {
-  // sometimes you should use vendor-feature.
-  -webkit-overflow-scrolling: touch;
 }
 
 .graycode {
@@ -152,121 +262,21 @@ pre code {
   white-space: pre; // save it but no-wrap;
   word-wrap: normal; // no-wrap
 }
-code,
-kbd,
-pre,
-samp {
-  @include monospace;
-}
 
-// In the list of posts
 .postlist-container {
   margin-bottom: 15px;
+  max-width: 640px;
 }
 
-// In the post.
 .post-container {
+  padding: 20px;
   a {
-    // display: inline-block;
-    // safari has bugs on word-break on inline elements.
-    color: #337ab7;
-    // different to $brand-primary
+    color: $post-content-link;
     &:hover,
     &:focus {
       color: $brand-primary;
     }
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 50px 0 20px;
-    line-height: 1.4;
-    & + p {
-      margin-top: 20px;
-    }
-  }
-  h2::before {
-    content: " ";
-    display: block;
-    border-bottom: 1px solid #ececec;
-    margin-top: 44px;
-    margin-bottom: 30px;
-  }
-  h4 {
-    font-size: 22px;
-    font-weight: 600;
-    color: gray;
-    & + p {
-      margin-top: 10px;
-    }
-  }
-  h5,
-  h6 {
-    font-size: 20px;
-    font-weight: 600;
-    color: gray;
-    & + p {
-      margin-top: 10px;
-    }
-  }
-  // downscale the font a little bit in mobile
-  @media screen and (max-width: 768px) {
-    h1 {
-      font-size: 30px;
-    }
-    h2 {
-      font-size: 22px;
-    }
-    h3 {
-      font-size: 20px;
-    }
-    h4 {
-      font-size: 19px;
-    }
-    h5,
-    h6 {
-      font-size: 18px;
-    }
-  }
-  ul,
-  ol {
-    margin-bottom: 40px;
-    @media screen and (max-width: 768px) {
-      & {
-        padding-left: 30px;
-      }
-    }
-    @media screen and (max-width: 500px) {
-      & {
-        padding-left: 20px;
-      }
-    }
-  }
-  ol ol,
-  ol ul,
-  ul ol,
-  ul ul {
-    margin-bottom: 5px;
-  }
-  li {
-    p {
-      margin: 0;
-      margin-bottom: 5px;
-    }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      line-height: 2;
-      margin-top: 20px;
-    }
-  }
-  // V1.6 Hux display title by default.
   .pager li {
     width: 48%;
     &.next {
@@ -284,441 +294,8 @@ samp {
       }
     }
   }
-  .anchorjs-link {
-    // I can not understand this but this made anchor always in the same line as title
-    position: absolute;
-    text-decoration: none !important;
-  }
 
-  .anchorjs-link {
-    font-family: serif;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    padding-left: 0.375em;
-    font-size: 0.9em;
-    margin-top: 0.1em;
-    opacity: 0;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-    /* Support for IE. */
-    font-feature-settings: "liga";
-
-    &:hover,
-    &:focus {
-      opacity: 1;
-    }
-    &:after {
-      content: "¶";
-    }
-  }
-
-  @media all and (min-width: 800px) {
-    .anchorjs-link {
-      position: absolute;
-      left: -0.75em;
-    }
-  }
-
-  figure {
-    margin: .0rem;
-    text-align: center;
-    position: relative;
-
-    .image-caption:not(:empty) {
-      min-width: 20%;
-      max-width: 80%;
-      display: inline-block;
-      font-style: italic;
-      padding: .5rem;
-      margin: 0 auto;
-      color: $brand-gray;
-    }
-
-    .gallery-caption:not(:empty) {
-      display: block;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      font-style: italic;
-      color: #fff;
-      margin-bottom: 5px;
-      margin-right: 5px;
-      background: #9996;
-      border-radius: 7px;
-      padding: 0.7rem;
-      line-height: 0.5;
-    }
-
-    img {
-      display: block;
-      /*width: 100%;*/
-      height: auto;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-  }
 }
-
-// Navigation
-
-// materialize, mobile only
-@media only screen and (max-width: 767px) {
-  /**
-   * Layout
-   * Since V1.6 we use absolute positioning to prevent to expand container-fluid
-   * which would cover tags. A absolute positioning make a new layer.
-   */
-  .navbar-default .navbar-collapse {
-    position: absolute;
-    right: 0;
-    border: none;
-    background: white;
-    box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px,
-      rgba(0, 0, 0, 0.239216) 0px 1px 4px;
-    border-radius: 2px;
-    width: 170px;
-  }
-  /**
-   * Animation
-   * HuxBlog-Navbar using genuine Material Design Animation
-   */
-  #blog_navbar {
-    /**
-     * Sharable code and 'out' function
-     */
-    // the container do width-transition
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: top right;
-    transition: all 200ms cubic-bezier(0.47, 0, 0.4, 0.99) 0ms;
-    -webkit-transform: scaleX(0);
-    -webkit-transform-origin: top right;
-    -webkit-transition: all 200ms cubic-bezier(0.47, 0, 0.4, 0.99) 0ms;
-    a {
-      font-size: 13px;
-      line-height: 28px;
-    }
-    .navbar-collapse {
-      // the navbar do height-transition
-      height: 0px; // to solve container-mask-tags issue (default state).
-      transform: scaleY(0);
-      transform-origin: top right;
-      transition: transform 400ms cubic-bezier(0.32, 1, 0.23, 1) 0ms;
-      -webkit-transform: scaleY(0);
-      -webkit-transform-origin: top right;
-      -webkit-transition: -webkit-transform 400ms cubic-bezier(0.32, 1, 0.23, 1)
-        0ms;
-    }
-    li {
-      opacity: 0;
-      transition: opacity 100ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-      -webkit-transition: opacity 100ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-    }
-    /**
-     *'In' Animation
-     */
-    &.in {
-      transform: scaleX(1);
-      -webkit-transform: scaleX(1);
-      opacity: 1;
-      transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-      -webkit-transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-      .navbar-collapse {
-        transform: scaleY(1);
-        -webkit-transform: scaleY(1);
-        transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1);
-        -webkit-transition: -webkit-transform 500ms
-          cubic-bezier(0.23, 1, 0.32, 1);
-      }
-      li {
-        opacity: 1;
-        transition: opacity 450ms cubic-bezier(0.23, 1, 0.32, 1) 205ms;
-        -webkit-transition: opacity 450ms cubic-bezier(0.23, 1, 0.32, 1) 205ms;
-      }
-    }
-  }
-}
-
-// ???
-.navbar-custom {
-  // materialize
-  background: none;
-  border: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 3;
-  @include sans-serif;
-  .navbar-brand {
-    font-weight: 800;
-    // materialize
-    color: white;
-    height: 56px;
-    line-height: 25px;
-    &:hover {
-      color: $navbar-hover-color;
-    }
-  }
-  .nav {
-    li {
-      a {
-        text-transform: uppercase;
-        font-size: 12px;
-        line-height: 20px;
-        font-weight: 800;
-        letter-spacing: 1px;
-        // only highlight in mobile
-        &:active {
-          background: rgba(0, 0, 0, 0.12);
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 768px) {
-    body {
-      font-size: 20px;
-    }
-    background: transparent;
-    border-bottom: 1px solid transparent;
-    .navbar-brand {
-      color: white;
-      padding: 20px;
-      line-height: 20px;
-      &:hover,
-      &:focus {
-        color: $navbar-hover-color;
-      }
-    }
-    .nav {
-      li {
-        a {
-          color: white;
-          padding: 20px;
-          &:hover,
-          &:focus {
-            color: $navbar-hover-color;
-          }
-          &:active {
-            background: none;
-          }
-        }
-      }
-    }
-  }
-  &.invert {
-    .navbar-toggle {
-      &:active {
-        background-color: rgba(0, 0, 0, 0.05);
-      }
-      .icon-bar {
-        background-color: $gray-dark;
-      }
-    }
-    .navbar-brand {
-      color: $gray-dark;
-      &:hover,
-      &:focus {
-        color: $brand-primary;
-      }
-    }
-    .nav {
-      li {
-        a {
-          color: $gray-dark;
-          &:hover,
-          &:focus {
-            color: $brand-primary;
-          }
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 1170px) {
-    -webkit-transition: background-color 0.3s;
-    -moz-transition: background-color 0.3s;
-    transition: background-color 0.3s;
-    /* Force Hardware Acceleration in WebKit */
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    &.is-fixed {
-      /* when the user scrolls down, we hide the header right above the viewport */
-      position: fixed;
-      top: -61px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid #f2f2f2;
-      -webkit-transition: -webkit-transform 0.3s;
-      -moz-transition: -moz-transform 0.3s;
-      transition: transform 0.3s;
-      .navbar-brand {
-        color: $gray-dark;
-        &:hover,
-        &:focus {
-          color: $brand-primary;
-        }
-      }
-      .nav {
-        li {
-          a {
-            color: $gray-dark;
-            &:hover,
-            &:focus {
-              color: $brand-primary;
-            }
-          }
-        }
-      }
-    }
-    &.is-visible {
-      /* if the user changes the scrolling direction, we show the header */
-      -webkit-transform: translate3d(0, 100%, 0);
-      -moz-transform: translate3d(0, 100%, 0);
-      -ms-transform: translate3d(0, 100%, 0);
-      -o-transform: translate3d(0, 100%, 0);
-      transform: translate3d(0, 100%, 0);
-    }
-  }
-}
-
-// Header
-
-.intro-header {
-  &.style-text {
-    background: none;
-    .site-heading,
-    .post-heading,
-    .page-heading {
-      padding: 85px 0 20px;
-      color: $gray-dark;
-      .subheading {
-        margin-bottom: 15px;
-      }
-    }
-  }
-  background: no-repeat center center;
-  background-color: $brand-gray;
-  background-attachment: scroll;
-  @include background-cover;
-  // NOTE: Background images are set within the HTML using inline CSS!
-  margin-bottom: 0px; /* 0 on mobile, modify by Hux */
-  @media only screen and (min-width: 768px) {
-    margin-bottom: 20px; /* response on desktop */
-  }
-  .post-heading,
-  .page-heading {
-    padding: 85px 0 55px;
-    color: white;
-    @media only screen and (min-width: 768px) {
-      padding: 80px 0;
-    }
-  }
-  // masterialize
-  .site-heading {
-    padding: 95px 0 70px;
-    color: white;
-    @media only screen and (min-width: 768px) {
-      padding: 120px 0;
-    }
-  }
-  .site-heading,
-  .page-heading {
-    text-align: left;
-    h1 {
-      margin-top: 0;
-      font-size: 50px;
-      color: $heading-color;
-    }
-    .subheading {
-      @include sans-serif;
-      font-size: 18px;
-      line-height: 1.1;
-      display: block;
-      font-weight: 300;
-      margin: 10px 0 0;
-      color: $subheading-color;
-    }
-    @media only screen and (min-width: 768px) {
-      h1 {
-        font-size: 80px;
-      }
-    }
-  }
-  .post-heading {
-    h1 {
-      font-size: 30px;
-      margin-bottom: 24px;
-      color: $post-heading-color;
-    }
-    .subheading {
-      color: $subheading-color;
-      line-height: 1.1;
-      display: block;
-    }
-    .meta {
-      color: $subheading-color;
-      line-height: 1.1;
-      display: block;
-    }
-    .subheading {
-      @include sans-serif;
-      font-size: 17px;
-      line-height: 1.4;
-      font-weight: normal;
-      margin: 10px 0 30px;
-      margin-top: -5px;
-    }
-    .meta {
-      @include serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: 16px;
-      a {
-        color: white;
-      }
-    }
-    @media only screen and (min-width: 768px) {
-      h1 {
-        font-size: 55px;
-      }
-      .subheading {
-        font-size: 30px;
-      }
-      .meta {
-        font-size: 20px;
-      }
-    }
-  }
-  .header-img-credit {
-    position: absolute;
-    bottom: 6px;
-    right: 9px;
-    color: white;
-    opacity: 0.3;
-    font-size: 10px;
-    z-index: 1;
-    a {
-      color: white;
-    }
-    @media only screen and (min-width: 768px) {
-      & {
-        font-size: 12px;
-        bottom: 10px;
-        right: 15px;
-      }
-    }
-  }
-}
-
-// Post Preview Pages (Home Page)
 
 .post-preview {
   display: flex;
@@ -748,42 +325,27 @@ samp {
     }
     > .post-title {
       font-size: 21px;
-      line-height: 1.3;
+      line-height: 1.2;
       margin-top: 2px;
       margin-bottom: 2px;
       align: left;
     }
   }
   .post-subtitle {
-      font-size: 15px;
-      line-height: 1.3;
+      font-size: 0.8rem;
+      line-height: 1.1;
       margin: 0;
       margin-bottom: 3px;
       align: left;
     }
   .post-meta {
-    @include sans-serif;
     color: $brand-gray;
     font-size: 10px;
     margin-top: 5px;
 		text-align: right;
     }
-  @media only screen and (min-width: 768px) {
-    > a {
-      > .post-title {
-        font-size: 26px;
-      }
-      > .post-subtitle {
-        font-size: 16px;
-      }
-    }
-    .post-meta {
-      font-size: 12px;
-    }
-  }
 }
 
-// Hux add home-page post-content-preview
 .post-content-preview {
   font-size: 15px;
   font-style: italic;
@@ -793,13 +355,7 @@ samp {
   p {
     margin: 0;
   }
-
-  @media only screen and (min-width: 768px) {
-    font-size: 14px;
-  }
 }
-
-// Sections
 
 .section-heading {
   font-size: 36px;
@@ -850,7 +406,6 @@ footer {
 // Button Styles
 
 .btn {
-  @include sans-serif;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 800;
@@ -873,85 +428,7 @@ footer {
   }
 }
 
-// Pager Styling
 
-.pager {
-  margin: 20px 0 0 !important;
-  padding: 0px !important;
-
-  li {
-    > a,
-    > span {
-      @include sans-serif;
-      text-transform: uppercase;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      padding: 10px;
-      background-color: white;
-      border-radius: 0;
-      @media only screen and (min-width: 768px) {
-        font-size: 14px;
-        padding: 15px 25px;
-      }
-    }
-
-    > a {
-      color: $gray-dark;
-    }
-    > a:hover,
-    > a:focus {
-      color: white;
-      background-color: $brand-primary;
-      border: 1px solid $brand-primary;
-
-      // V1.6 display title
-      > span {
-        color: white;
-      }
-    }
-  }
-
-  .disabled {
-    > a,
-    > a:hover,
-    > a:focus,
-    > span {
-      color: $brand-gray;
-      background-color: $gray-dark;
-      cursor: not-allowed;
-    }
-  }
-}
-
-// -- Highlight Color Customization
-
-::-moz-selection {
-  color: white;
-  text-shadow: none;
-  background: $brand-primary;
-}
-
-::selection {
-  color: white;
-  text-shadow: none;
-  background: $brand-primary;
-}
-
-img::selection {
-  color: white;
-  background: transparent;
-}
-
-img::-moz-selection {
-  color: white;
-  background: transparent;
-}
-
-/* Hux add tags support */
-.d-none {
-  display: none !important;
-}
 .tags {
   margin-bottom: -5px;
   &.tags-sup {
@@ -962,6 +439,7 @@ img::-moz-selection {
   }
   a,
   .tag {
+    text-shadow: 4px 8px 12px rgba(0,0,0,0.4), 8px 12px 16px rgba(0,0,0,0.4);
     display: inline-block;
     border: 1px solid $header-tag-border;
     border-radius: 999em;
@@ -985,19 +463,13 @@ img::-moz-selection {
       background-color: $header-tag-bg-hover;
       text-decoration: none;
     }
-    @media only screen and (min-width: 768px) {
-      margin-right: 5px;
-    }
   }
 }
 
 #tag-heading {
   padding: 70px 0 60px;
-  @media only screen and (min-width: 768px) {
-    padding: 55px 0;
-  }
 }
-// tag_cloud
+
 #tag_cloud {
   margin: 20px 0 15px 0;
   a,
@@ -1030,45 +502,16 @@ img::-moz-selection {
       }
     }
   }
-  @media only screen and (min-width: 768px) {
-    margin-bottom: 25px;
-  }
 }
 
 .tag-comments {
   font-size: 12px;
-  @media only screen and (min-width: 768px) {
-    font-size: 14px;
-  }
 }
 
-.t {
-  //margin-top: 50px;
-  &:first-child {
-    margin-top: 0px;
-  }
-  hr:last-of-type {
-    //display: none;
-  }
-}
-.listing-seperator {
-  color: #0085a1;
-  font-size: 21px !important;
-  &::before {
-    margin-right: 5px;
-  }
-  @media only screen and (min-width: 768px) {
-    font-size: 20px !important;
-    line-height: 2 !important;
-  }
-}
-
-// Customize Style for Posts in Mini-Post-List
 .mini-post-list {
   margin: 20px 0 15px 0;
   .tag-text {
     font-weight: 200;
-    @include sans-serif;
   }
 
   .post-preview {
@@ -1100,68 +543,8 @@ img::-moz-selection {
       margin: 0px;
       font-size: 12px;
     }
-    @media only screen and (min-width: 768px) {
-      margin-left: 20px;
-      > a {
-        > .post-title {
-          font-size: 18px;
-          line-height: 1.3;
-        }
-        > .post-subtitle {
-          font-size: 16px;
-        }
-      }
-      .post-meta {
-        font-size: 18px;
-      }
-    }
   }
 }
-
-/* Tags support End*/
-
-/* Hux make all img responsible in post-container */
-.post-container img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-	margin-left: auto;
-	margin-right: auto;
-/*  margin: 1.5em auto 1.6em auto; */
-}
-
-/* Hux Optimize UserExperience */
-.navbar-default .navbar-toggle {
-  &:focus,
-  &:hover {
-    background-color: inherit;
-  }
-  &:active {
-    background-color: rgba(255, 255, 255, 0.25);
-  }
-}
-
-/* Hux customize Style for navBar button */
-
-.navbar-default .navbar-toggle {
-  border-color: transparent;
-  padding: 19px 16px;
-  margin-top: 2px;
-  margin-right: 2px;
-  margin-bottom: 2px;
-  border-radius: 50%;
-  .icon-bar {
-    width: 18px;
-    border-radius: 0px;
-    // materialize
-    background-color: white;
-  }
-  .icon-bar + .icon-bar {
-    margin-top: 3px;
-  }
-}
-
-// Hux fullscreen mode in 404.html
 
 .page-fullscreen .intro-header {
   position: fixed;
@@ -1170,28 +553,7 @@ img::-moz-selection {
   width: 100%;
   height: 100%;
 }
-.page-fullscreen #tag-heading {
-  position: fixed;
-  left: 0;
-  top: 0;
-  padding-bottom: 150px;
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-pack: center;
-  -webkit-box-align: center;
 
-  display: -webkit-flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: center;
-  -webkit-flex-direction: column;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
 .page-fullscreen footer {
   position: absolute;
   width: 100%;
@@ -1200,6 +562,7 @@ img::-moz-selection {
   opacity: 0.6;
   color: #fff;
 }
+
 .page-fullscreen footer .copyright {
   color: #fff;
 }
@@ -1210,13 +573,8 @@ img::-moz-selection {
   color: #ddd;
 }
 
-// MathJax Overflow
-.MathJax_SVG_Display {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
 .no-scroll {
+  overflow-x: hidden;
   overflow-y: hidden;
 }
 
@@ -1225,15 +583,15 @@ img::-moz-selection {
 }
 
 .photo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 
-    img {
-        border-radius: 8px;
-        padding: 2px;
-    }
+  img {
+    border-radius: 8px;
+    padding: 2px;
+  }
 }
 
 .videocontainer video {
@@ -1262,9 +620,6 @@ img::-moz-selection {
 .photocaption {
   text-align: center;
 
-  div {
-  }
-
   .title {
     font-style: italic;
   }
@@ -1281,4 +636,64 @@ img::-moz-selection {
 
 .paren {
   font-size: 0.8em;
+}
+
+.short-about {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.socials {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .social {
+    text-shadow: 2px 4px 10px rgba(0,0,0,0.2), 3px 5px 12px rgba(0,0,0,0.2);
+  }
+}
+
+.pager {
+  margin: 20px 0 0 !important;
+  padding: 0px !important;
+
+  li {
+    > a,
+    > span {
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 0;
+    }
+
+    > a {
+      color: $gray-dark;
+    }
+    > a:hover,
+    > a:focus {
+      color: white;
+      background-color: $brand-primary;
+      border: 1px solid $brand-primary;
+
+      // V1.6 display title
+      > span {
+        color: white;
+      }
+    }
+  }
+
+  .disabled {
+    > a,
+    > a:hover,
+    > a:focus,
+    > span {
+      color: $brand-gray;
+      background-color: $gray-dark;
+      cursor: not-allowed;
+    }
+  }
 }

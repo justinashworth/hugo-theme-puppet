@@ -1,22 +1,25 @@
 @import "variables.scss";
 
-// Sidebar Components
-
-// Large Screen
-@media (min-width: 1200px) {
-  .post-container,
+@media (max-width: 950px) {
   .sidebar-container {
-    padding-right: 5%;
-  }
-}
-@media (min-width: 768px) {
-  .post-container {
-    padding-right: 5%;
+    order: 2;
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
   }
 }
 
-// Container of Sidebar, also Friends
 .sidebar-container {
+  order: 1;
+  margin-top: 0;
+  position: sticky;
+  top: 0;
+  width: 320px;
+  align-self: flex-start;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   color: $gray-light;
   font-size: 14px;
   h5 {
@@ -35,7 +38,12 @@
     }
   }
   .tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-shadow: none;
     a {
+      text-shadow: none;
       color: $sidebar-tag-text;
       border-color: $sidebar-tag-border;
       background-color: $sidebar-tag-bg;
