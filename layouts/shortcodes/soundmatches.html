@@ -1,0 +1,56 @@
+{{- $datakey := .Get 0 -}}
+{{- $data := index .Site.Data $datakey }}
+
+{{- $threshold := 0.3 -}}
+
+{{- $uniqueID := $datakey }}
+
+<div id="soundmatches-container-{{ $uniqueID }}" class="soundmatches-container">
+  <div class="audiopanel">
+    <audio id="audio-{{ $uniqueID }}" controls controlsList="nodownload" src="{{- $data.audio }}"></audio>
+    <div id="audiotrack-{{ $uniqueID }}" class="audiotrack">
+      <div id="progress-{{ $uniqueID }}" class="progress"></div>
+      <div id="progress-position-{{ $uniqueID }}" class="progress-position"></div>
+      <div id="cues-visual-{{ $uniqueID }}" class="cues-visual">
+        {{- range $index, $cue := $data.cues }}
+          {{- if ge $cue.conf $threshold }}
+            {{- $startPct := mul (div $cue.start $data.totalLength) 100 }}
+            {{- $endPct := mul (div $cue.end $data.totalLength) 100 }}
+            {{- $durationPct := sub $endPct $startPct }}
+            {{- $remainingSpace := sub 100 $startPct }}
+
+            {{/* Ensure width is not negative */}}
+            {{- $positiveWidth := $durationPct }}
+            {{- if lt $positiveWidth 0 }}
+              {{- $positiveWidth = 0 }}
+            {{- end }}
+
+            {{/* Limit width to remaining space */}}
+            {{- $limitedWidth := $positiveWidth }}
+            {{- if gt $positiveWidth $remainingSpace }}
+              {{- $limitedWidth = $remainingSpace }}
+            {{- end }}
+
+            {{- $hue := mul (div (float $index) (float (len $data.cues))) 360 }}
+            <div class="cue-box" style="left: {{- printf "%.2f" $startPct }}%; width: {{- printf "%.2f" $limitedWidth }}%; background-color: hsla({{- $hue -}}, 100%, 50%, 0.2);">
+              {{- $cue.name -}}
+              <span class="cue-info">
+                @{{- $cue.start -}}s,&nbsp;confidence:&nbsp;{{- printf "%.2f" $cue.conf -}}
+              </span>
+            </div>
+          {{- end }}
+        {{- end }}
+      </div>
+    </div>
+  </div>
+  <div class="match-buttons">
+    {{ range $index, $cue := $data.cues }}
+      {{- if ge $cue.conf $threshold }}
+        {{- $hue := mul (div (float $index) (float (len $data.cues))) 360 }}
+        <button class="match-button" style="background-color: hsla({{- $hue -}}, 100%, 50%, 0.2); border-color: hsla({{- $hue -}}, 100%, 50%, 0.5);" onclick="playAtCue('{{- $data.audio }}', {{- $cue.start }})">
+          {{- $cue.name -}}</button>
+      {{- end }}
+    {{- end -}}
+  </div>
+  <div class="attribution">ajustinfocus.com</div>
+</div>

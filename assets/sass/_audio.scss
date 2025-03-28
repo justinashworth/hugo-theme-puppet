@@ -1,0 +1,143 @@
+.soundmatches-container {
+  position: relative;
+  border: 1px solid #0003;
+  width: 100%;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+
+  .audiopanel {
+
+    audio {
+      width: 100%;
+      height: 30px;
+      /* Hide the download button */
+      &::-webkit-media-controls-download-button {
+        display: none;
+      }
+      /* Hide the playback speed menu */
+      &::-webkit-media-controls-playback-rate-button {
+        display: none;
+      }
+    }
+
+    .audiotrack {
+      margin-top: 10px;
+      width: 100%;
+      height: 10px;
+      background-color: #6665;
+      position: relative;
+      cursor: pointer;
+
+      .progress {
+        background-color: #0003;
+      }
+
+      .progress-position {
+        position: absolute;
+        top: -5px;
+        width: 2px;
+        height: 20px;
+        background-color: #0007;
+        z-index: 30;
+      }
+
+      .cues-visual {
+        position: relative;
+        background-color: #0000;
+
+        .cue-box {
+          border-radius: 5px;
+          position: absolute;
+          font-size: 0.5em;
+          top: -10px;
+          height: 30px;
+          color: #000;
+          z-index: -5;
+
+          .cue-info {
+            position: absolute;
+            background-color: #0000;
+            top: 20px;
+            left: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  .match-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .match-button {
+      border-radius: 8px;
+      border: 1px solid #0003;
+      font-size: 0.7em;
+      line-height: 1rem;
+      margin: 4px;
+      padding: 4px;
+    }
+
+    .resource-link {
+      margin-left: 10px;
+      color: #369;
+      text-decoration: none;
+      &:hover {
+        color: #f90;
+      }
+    }
+
+  }
+
+  .attribution {
+    position: absolute;
+    bottom: 5px;
+    right: 8px;
+    font-size: 0.5rem;
+    color: #0005;
+
+    @media (max-width: 768px) {
+      font-size: 0.35rem;
+    }
+  }
+
+}
+
+.audio-canvas {
+  background-color: #0003;
+  width:150px;
+  height: 120px;
+  z-index: 10;
+}
+
+.play-button {
+  position: absolute;
+  left: 0px;
+  top: 25px;
+  background-color: #3697;
+}
+
+.volume {
+  position: absolute;
+  right: 0px;
+  z-index: 0;
+}
+
+.track-info {
+  font-family: monospace;
+  position: absolute;
+  display: flex;
+  top: -30px;
+  right: 0px;
+  z-index: 10;
+  .timecounter {
+    flex: 1;
+    text-align: left;
+    display: inline-block;
+  }
+}

@@ -1,25 +1,10 @@
+@import "_audio.scss";
 @import "_variables.scss";
 @import "_sidebar.scss";
 @import "_side-catalog.scss";
 @import "_inat.scss";
 @import "_search.scss";
 @import "_highlight.scss";
-
-// Small screens / mobile
-@media (max-width: 950px) {
-  .main-container {
-    padding: 10px;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .post-container {
-    padding: 10px;
-  }
-  .caption {
-    font-size: 12px;
-    line-height: 1;
-  }
-}
 
 .post-content-preview {
   font-size: 14px;
@@ -57,43 +42,45 @@ a {
 }
 
 .intro-header {
-  height: 250px;
+  height: 350px;
   overflow: hidden;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
+  background-image: url('img/home-bg.jpg');
 
   position: relative;
-  &.style-text {
-    background: none;
-    .site-heading,
-    .post-heading,
-    .page-heading {
-      padding: 20px 0 5px;
-      color: $gray-dark;
-      .subheading {
-        margin-bottom: 15px;
-      }
-    }
-  }
   .post-heading,
-  .page-heading {
-    padding: 20px 0 5px;
-    color: white;
-  }
+  .page-heading,
   .site-heading {
-    padding: 95px 0 70px;
-    color: white;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 5px;
   }
+
+  .site-heading {
+    padding-top: 80px;
+  }
+
   .site-heading,
-  .page-heading {
+  .page-heading,
+  .post-heading {
     text-align: left;
+    padding-left: 40px;
+    padding-right: 40px;
     h1 {
-      padding-left: 10px;
-      margin-top: 0;
-      font-size: 3rem;
+      margin-top: 10px;
+      margin-bottom: 0px;
+      font-size: 4rem;
       color: $heading-color;
-      text-shadow: 2px 4px 10px rgba(0,0,0,0.4), 3px 5px 12px rgba(0,0,0,0.4);
+      text-shadow: 2px 4px 10px #0004, 3px 5px 12px #0004;
+    }
+    h2 {
+      margin-top: 0px;
+      padding-top: 0px;
+      font-size: 2rem;
+      color: $post-heading-subtitle-color;
+      text-shadow: 2px 2px 7px #0008;
     }
     .subheading {
       font-size: 18px;
@@ -106,52 +93,25 @@ a {
   }
   .post-heading {
     h1 {
-      font-size: 30px;
-      margin-bottom: 24px;
       color: $post-heading-color;
-      text-shadow: 2px 4px 10px rgba(0,0,0,0.4), 3px 5px 12px rgba(0,0,0,0.4);
-    }
-    .subheading {
-      color: $subheading-color;
-      line-height: 1.1;
-      display: block;
     }
     .meta {
       color: $subheading-color;
       line-height: 1.1;
       display: block;
-    }
-    .subheading {
-      font-size: 17px;
-      line-height: 1.2;
-      font-weight: normal;
-      margin: 10px 0 30px;
-      margin-top: -5px;
-    }
-    .meta {
-      font-style: italic;
-      font-weight: 300;
-      font-size: 16px;
-      a {
-        color: white;
-      }
     }
   }
   .header-img-credit {
     position: absolute;
     bottom: 6px;
     right: 9px;
-    color: white;
     opacity: 0.3;
     font-size: 10px;
     z-index: 1;
-    a {
-      color: white;
-    }
   }
   .header-post-date {
     position: absolute;
-    bottom: 0px;
+    bottom: 2px;
     left: 0px;
     font-size: 12px;
     color: white;
@@ -160,12 +120,14 @@ a {
 
   .header-home-link {
     position: absolute;
-    bottom: 0px;
-    right: 3px;
+    top: 5px;
+    bottom: auto;
+    right: 10px;
+    margin-left: 5px;
     a {
       text-shadow: 2px 4px 10px rgba(0,0,0,0.4), 3px 5px 12px rgba(0,0,0,0.4);
       font-weight: 800;
-      font-size: 20px;
+      font-size: 1.5rem;
       color: white;
       &:hover {
         color: $navbar-hover-color;
@@ -188,12 +150,6 @@ figure {
     color: $gray-dark;
   }
 
-  img {
-    /*width: 100%;*/
-    height: auto;
-    margin: 0 auto;
-    overflow: hidden;
-  }
 }
 
 .caption {
@@ -268,6 +224,10 @@ pre code {
   max-width: 640px;
 }
 
+footer, .container, .postlist-container {
+  max-width: 768px;
+}
+
 .post-container {
   padding: 20px;
   a {
@@ -277,24 +237,6 @@ pre code {
       color: $brand-primary;
     }
   }
-  .pager li {
-    width: 48%;
-    &.next {
-      float: right;
-    }
-    &.previous {
-      float: left;
-    }
-    > a {
-      width: 100%;
-      > span {
-        color: $brand-gray;
-        font-weight: normal;
-        letter-spacing: 0.5px;
-      }
-    }
-  }
-
 }
 
 .post-preview {
@@ -376,7 +318,7 @@ pre code {
 
 footer {
   font-size: 20px;
-  padding: 50px 0 65px;
+  padding: 15px 0 15px;
   .list-inline {
     margin: 0;
     padding: 0;
@@ -424,13 +366,10 @@ footer {
   &:focus {
     background-color: $brand-primary;
     border: 1px solid $brand-primary;
-    color: white;
   }
 }
 
-
 .tags {
-  margin-bottom: -5px;
   &.tags-sup {
     a,
     .tag {
@@ -655,45 +594,89 @@ footer {
 }
 
 .pager {
-  margin: 20px 0 0 !important;
-  padding: 0px !important;
 
-  li {
-    > a,
-    > span {
-      text-transform: uppercase;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      padding: 10px;
-      background-color: white;
-      border-radius: 0;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+
+  a {
+    text-align: center;
+    max-width: 200px;
+    margin: 5px;
+    padding: 10px;
+    color: $jungle;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid $brand-gray;
+  }
+
+  .next, .previous {
+    flex-grow: 1;
+  }
+
+}
+
+// Small screens / mobile
+@media (max-width: 950px) {
+
+  .pager {
+    flex-direction: column;
+    .next, .previous {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .main-container {
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .post-container {
+    padding: 10px;
+  }
+  .caption {
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .intro-header {
+    height: 250px;
+
+    .page-heading, .site-heading, .post-heading {
+      padding-left: 10px;
+      padding-right: 10px;
+      h1 {
+        margin-top: 10px;
+        font-size: 2.5rem;
+        padding-left: 10px;
+      }
+
+      h2 {
+        visibility: hidden;
+      }
     }
 
-    > a {
-      color: $gray-dark;
+    .site-heading {
+      h1 {
+        padding-top: 40px;
+      }
     }
-    > a:hover,
-    > a:focus {
-      color: white;
-      background-color: $brand-primary;
-      border: 1px solid $brand-primary;
 
-      // V1.6 display title
-      > span {
-        color: white;
+    .header-home-link {
+      top: auto;
+      bottom: 5px;
+       a {
+        font-size: 0.8rem;
       }
     }
   }
 
-  .disabled {
-    > a,
-    > a:hover,
-    > a:focus,
-    > span {
-      color: $brand-gray;
-      background-color: $gray-dark;
-      cursor: not-allowed;
-    }
+  .postlist-container {
+    margin-right: 0;
+    flex: none;
   }
 }

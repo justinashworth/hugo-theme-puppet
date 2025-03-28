@@ -2,10 +2,10 @@
 {{ $post_bg := .Scratch.Get "post_bg" }}
 
 {{ if .IsPage }}
-  {{ with $post_bg }}
+  {{ with .Params.header_img }}
     <header class="intro-header" style="background-image: url('{{- . -}}')">
   {{ else }}
-    <header class="intro-header style-text">
+    <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
   {{ end }}
     <div class="container">
       <div class="row">
@@ -16,6 +16,7 @@
             {{ end }}
           </div>
           <h1>{{ .Title }}</h1>
+          {{- with .Params.subtitle }}<h2>{{ . }}</h2>{{- end }}
         </div>
       </div>
     </div>
@@ -28,23 +29,24 @@
   {{ with $header_img }}
     <header class="intro-header" style="background-image: url('{{- . -}}')">
   {{ else}}
-    <header class="intro-header style-text">
+    <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
   {{ end }}
     <div class="container">
-      <div class="row">
-        {{ if eq (.Param "short") true }}
+      {{ if eq (.Param "short") true }}
         <div class="site-heading" id="tag-heading">
-        {{ else }}
+      {{ else }}
         <div class="site-heading">
-        {{ end }}
-          <h1>{{ with .Title }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}</h1>
-          {{ $homesubtitle := .Description }}
-          {{ if .IsHome }}
+      {{ end }}
+        <h1>{{ with .Title }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}</h1>
+        {{ $homesubtitle := .Description }}
+        {{ if .IsHome }}
           {{ $homesubtitle = .Site.Params.homesubtitle }}
-          {{ end }}
-          <span class="subheading">{{ $homesubtitle }}</span>
-        </div>
+        {{ end }}
+        <span class="subheading">{{ $homesubtitle }}</span>
       </div>
+    </div>
+    <div class='header-home-link'>
+      <a href="{{ .Site.BaseURL | safeURL }}">{{ .Site.Title }}</a>
     </div>
   </header>
 {{ end }}

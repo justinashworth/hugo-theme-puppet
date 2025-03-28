@@ -1,32 +1,28 @@
 {{ define "main" }}
 
 <!-- Post Content -->
-<article>
   <div class="container">
-    <div class="row">
 
       <!-- Post Container -->
       <div class="post-container">
         {{ .Content }}
 
-        <ul class="pager">
+        <div class="pager">
           {{ with .Prev }}
-          <li class="previous">
-            <a href="{{ .RelPermalink }}" data-toggle="tooltip" data-placement="top" title="{{ .Title }}">
-              Previous<br>
-              <span>{{ .Title }}</span>
+          <div class="previous">
+            <a href="{{ .RelPermalink }}" title="{{ .Title }}">
+              Previous: {{ .Title | truncate 30 }}
             </a>
-          </li>
+          </div>
           {{ end }}
           {{ with .Next }}
-          <li class="next">
-            <a href="{{ .RelPermalink }}" data-toggle="tooltip" data-placement="top" title="{{ .Title }}">
-              Next<br>
-              <span>{{ .Title }}</span>
+          <div class="next">
+            <a href="{{ .RelPermalink }}" title="{{ .Title }}">
+              Next: {{ .Title | truncate 30 }}
             </a>
-          </li>
+          </div>
           {{ end }}
-        </ul>
+        </div>
 
         <!-- comments -->
         {{ if .Params.hidecomment }}
@@ -36,7 +32,7 @@
 
       </div>
 
-      <!-- Side Catalog Container -->
+      <!-- Side TOC Catalog Container -->
       {{ $toc := .Scratch.Get "toc" }}
       {{ if $toc }}
       <div class="sidebar-container catalog-container">
@@ -59,7 +55,5 @@
         {{ partial "friends.html" . }}
       </div>
     </div>
-  </div>
-</article>
 
 {{ end }}
